@@ -1,0 +1,70 @@
+$white : #fff ;
+$blue : #1EADB7 ;
+$mainColor : #49b797 ;
+.login-wrapper{
+  width : 325px ;
+  background: $white ;
+  overflow : hidden ;
+  margin : 100px auto ;
+  box-shadow: 3px 3px 10px #e8e8e8;
+}
+.login-header{
+  width : 100%;
+  padding : 20px 0px ;
+  color : $white ;
+  /*background: linear-gradient(30deg,$green, $blue);*/
+  background: $mainColor ;
+}
+.login-body{
+  width : 100% ;
+  padding : 35px 40px ;
+}
+.form-login-control{
+  background: $white ;
+  box-shadow: none ;
+  border-radius : 0 ;
+  padding-left : 30px ;
+
+  &.form-username, &.form-password {
+    background-repeat: no-repeat !important ;
+    background-position-y: center !important ;
+  }
+
+  &.form-username {
+    background: url('../img/account-24.png') ;
+  }
+
+  &.form-password{
+    background: url('../img/lock-24.png') ;
+    border-right : none ;
+  }
+
+}
+.show-password-addon{
+  background: $white ;
+  border-radius : 0px ;
+  border-left : none ;
+  cursor: pointer ;
+}
+.form-error{
+  border-color : #ce4844 ; 
+}
+.error-msg{
+  color : #ce4844 ;
+}
+.btn-login{
+  background: $mainColor ;
+  border-color: $mainColor ;
+  border-radius : 0 ;
+  width: 100%;
+  font-size : 1.2em ;
+    
+  transition : all 0.2s ease-in-out ;
+  -webkit-transition : all 0.2s ease-in-out ;
+  -moz-transition : all 0.2s ease-in-out ;
+
+  &:hover, &:active, &:focus {
+    background: #40ad8d ;
+    border-color : #40ad8d ;
+  }
+}

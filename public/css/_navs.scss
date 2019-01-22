@@ -1,0 +1,246 @@
+$mainColor : #49b797 ;
+$activeColor : #7ec3af ;
+$dustgray : #848484 ;
+$white : #fff ;
+$green : #32ba5b ;
+$blue : #1EADB7 ;
+$marked : #f5f5f5 ;
+$shadow : #e8e8e8 ;
+$privil : #918f8f ;
+
+.head-navbar{
+  width : 100% ;
+  min-height : 60px ;
+  padding : 0 15px ;
+  position : fixed ;
+  top : 0 ;
+  left : 0 ;
+  z-index : 100 ;
+  border-bottom : solid 2px #f0f0f0 ;
+}
+.white-bg{
+  background : $white ;
+}
+
+.sidebar-toggle{
+  float : left ;
+  padding-right : 30px ;
+  margin-top : 20px ;
+  color: $mainColor ;
+}
+#sidebar, #sidebar-show{
+  z-index : 106 ;
+}
+#sidebar {
+  width : 60px ;
+  height : 100% ;
+  position: fixed;
+  background : $mainColor ;
+}
+#sidebar-show{
+  width : 200px ;
+  height : 100% ;
+  position: fixed;
+  background: $mainColor ;
+
+  transition: all 0.2s ease-in ;
+  -webkit-transition: all 0.2s ease-in ;
+  -moz-transition: all 0.2s ease-in ;
+  -o-transition: all 0.2s ease-in ;
+}
+.hidden-sidebar{
+  left : -200px ;
+}
+.shown-sidebar{
+  left : 0px ;
+}
+.nav-collapse.collapse {
+    display: inline;
+}
+
+
+ul.sidebar-menu, ul.sidebar-show-menu{
+    margin: 65px 0 0;
+    padding: 0;
+
+    & li {
+      line-height: 20px !important;
+      position: relative ;
+
+      &.active a{
+        color: #fff;
+        background: $activeColor ;
+        display: block;
+
+        -webkit-transition: all 0.3s ease;
+        -moz-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        -ms-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+      }
+
+      & a span {
+        display: block;
+      }
+
+      & a p {
+        text-align: center ;
+        font-size: 0.75em ;
+        padding : 0 ;
+        margin : 0 ;
+      }
+
+      & a {
+        color: $white ;
+        text-decoration: none;
+        display: block;
+        padding: 15px 10px 15px 10px;
+        font-size: 15px ;
+        outline: none;
+        -webkit-transition: all 0.3s ease;
+        -moz-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        -ms-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+
+        &>span{
+          margin : 0px 12px 5px 12px ;
+        }
+
+        &:hover, &:focus {
+          color: #fff;
+          background: $activeColor ;
+          display: block;
+
+          -webkit-transition: all 0.3s ease;
+          -moz-transition: all 0.3s ease;
+          -o-transition: all 0.3s ease;
+          -ms-transition: all 0.3s ease;
+          transition: all 0.3s ease;
+        }
+      }
+    }
+}
+
+.icon-bars{
+  cursor : pointer ;
+  display: inline-block;
+  font-size: 18px ;
+}
+.sidebar-logo{
+  display: block ;
+  text-align: center ;
+  font-size: 21px ;
+  color : $white ;
+  text-transform: uppercase;
+  margin-top: 15px ;
+  margin-left : 10px ;
+  padding-bottom: 20px ;
+  text-decoration : none ;
+
+  &:hover, &:focus {
+    text-decoration : none ;
+  }
+
+  & span{
+    display: inline-block ;
+  }
+
+  & span.hide-sidebar{
+    cursor : pointer ;
+  }
+
+  & a.sidebar-logo-text{
+    color : $white ;
+    text-decoration: none ;
+
+    &:hover{
+      text-decoration: none ;
+    }
+  }
+}
+a.logo{
+  font-size : 21px ;
+  color : #2e2e2e ;
+  float : left ;
+  margin-left : 30px ;
+  margin-top : 15px ;
+  text-transform: uppercase;
+
+  &:hover, &:focus{
+    text-decoration : none ;
+    outline : none ;
+  }
+  & span{
+    color : $mainColor ;
+  }
+}
+
+ul.top-menu > li{
+  float : left ;
+  z-index : 101 ;
+
+  & > a {
+    color: #666666;
+    font-size: 14px;
+    font-weight: bold ;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    padding: 3px 6px;
+    margin-right: 15px;
+    margin-top: 8px;
+
+    &:hover, &:focus, &:active{
+      background-color: #fff!important;
+      border-color: #f0f0f8 !important;
+      text-decoration: none;
+      border-radius: 4px;
+      -webkit-border-radius: 4px;
+      color: #2E2E2E !important;
+    }
+  }
+}
+.top-nav{
+  margin-top : 7px ;
+  & li.dropdown{
+    & .dropdown-menu{
+      margin-top : 5px ;
+      float: right ;
+      right : 0 ;
+      left : auto ;
+    }
+  }
+}
+a.user-info-toggle{
+  div, span {
+    color : $dustgray  ;
+    display : inline-block ;
+  }
+  .icon-user{
+    padding : 7px 5px 5px 5px ;
+  }
+  .icon-chevron{
+    font-size : 12px ;
+    padding : 8px 0px 5px 5px ;
+  }
+  .user-info{
+    margin-left : 5px ;
+    margin-right : 35px ;
+    .user-info-name{
+      font-size : 14px ;
+      line-height: 14px ;
+    }
+    .user-info-privil{
+      font-size: 11px ;
+      line-height: 0px ;
+    }
+  }
+}
+.leave-badge{
+  background: $navy ;
+  position: absolute ;
+  top : 0 ;
+  right: 0 ;
+  margin-top : 5px !important ;
+  margin-right: 5px !important ;
+}

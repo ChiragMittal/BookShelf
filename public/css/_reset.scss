@@ -1,0 +1,64 @@
+.modal{
+    text-align: center ;
+    border-radius : 2px ;
+
+    & .modal-content{
+        border-radius : 2px ;
+    }
+
+    & .modal-header, & .modal-body, & .modal-footer{
+        text-align: center !important ;
+        border : none ;
+    }
+
+    & .modal-header{
+        font-weight: bold ;
+    }
+}
+.modal-sm{
+    width : 375px ;
+}
+.nopad{
+    padding : 0 !important ;
+}
+.nomag{
+    margin : 0 !important ;
+}
+.panel-transparent{
+    background: none !important ;
+    border : none !important ;
+    box-shadow: 0 0 0 ;
+
+    & .panel-body{
+        padding : 0px ;
+    }
+}
+.small-stat{
+    margin-top : 5px !important ;
+    margin-bottom : 5px !important ;
+}
+#leaveStat, #companyStat, #userStat{
+    background: $white ;
+    margin : 0px 0px 15px ;
+}
+.icon-statistic, .icon-desc{
+    padding-top : 5px ;
+    padding-bottom : 5px ;
+}
+.icon-statistic{
+    color : $navy ;
+    text-align: center ;
+    vertical-align: middle ;
+    & h1{
+        margin-top : 15px ;
+    }
+}
+.icon-statistic-leave {
+    background: #f1bebe ;
+}
+.icon-statistic-user{
+    background: #a7b9e2 ;
+}
+.icon-statistic-company{
+    background: #f8f69b ;
+}

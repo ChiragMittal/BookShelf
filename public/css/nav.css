@@ -1,0 +1,152 @@
+.menu {
+ background-color: #167b45;
+ margin-bottom: 0;
+    position: fixed;
+    margin-top: -20px ;
+    width: 100%;
+    height: 6%;
+    margin-bottom: 10px;
+    z-index: 2;
+    border: 0;
+    line-height: 1.42857143 !important;
+    letter-spacing: 4px;
+    border-radius: 0;
+    font-family: Montserrat, sans-serif;
+}
+
+.hello{
+  float: right !important;
+  margin-right: 20px;
+}
+
+.input{
+  margin-left: 300px;
+  height: 30px;
+  border-radius: 10px;
+  
+}
+/*.search{
+  margin-bottom: 10px;
+  padding-left: 30px;
+  padding-bottom: 10px;
+}*/
+
+.menu li {
+  /* I wanted mine horizontal. Feel free to change it to what you want */
+ display:inline-block;
+ margin-left: 0px;
+ font-size: 18px !important;
+ 
+
+}
+
+.menu li a {
+ color: white;
+ display: block; 
+padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+
+  /* My basic syling. I'm just giving them a black text, with a black border, and center the text in the box. */
+ 
+}
+
+.menu li a:hover{
+  color: #167b45;
+  background-color: white;
+}
+
+.menu li > ul {
+/****** THE INTERESTING PART ******/
+/* We hide the submenus by putting them somewhere on the left, with no opacity. */
+ 
+}
+
+
+
+
+.react-autosuggest__container {
+  position: relative;
+  margin-left: 200px;
+}
+
+.react-autosuggest__input {
+  width: 240px;
+  height: 30px;
+  padding: 10px 20px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+
+.react-autosuggest__input:focus {
+  outline: none;
+}
+
+.react-autosuggest__container--open .react-autosuggest__input {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.react-autosuggest__suggestions-container {
+  display: none;
+}
+
+.react-autosuggest__container--open .react-autosuggest__suggestions-container {
+  display: block;
+  position: absolute;
+  top: 51px;
+  width: 280px;
+  border: 1px solid #aaa;
+  background-color: #fff;
+  font-family: Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  z-index: 2;
+}
+
+.react-autosuggest__suggestions-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.react-autosuggest__suggestion {
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.react-autosuggest__suggestion:not(:first-child) {
+  border-top: 1px solid #ddd;
+}
+
+.react-autosuggest__suggestion--focused {
+  background-color: #0C7EAF;
+  color: #fff;
+}
+
+.suggestion-content {
+  display: flex;
+  align-items: center;
+  background-repeat: no-repeat;
+}
+
+.name {
+  margin-left: 68px;
+  line-height: 45px;
+}
+
+.highlight {
+  color: #ee0000;
+  font-weight: bold;
+}
+
+.react-autosuggest__suggestion--focused .highlight {
+  color: #120000;
+}
+

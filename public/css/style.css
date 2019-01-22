@@ -1,0 +1,13 @@
+#map {
+
+	height: 100%;
+    width: 63%;
+    float: right;
+    left: 0px;
+    position: fixed !important;
+    z-index: 1;
+}
+
+a {
+	text-decoration: none;
+}

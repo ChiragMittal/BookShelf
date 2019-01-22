@@ -1,0 +1,63 @@
+#flux-photo{
+	max-width: 50% !important;
+	margin:auto;
+}
+
+.container{
+	width: auto !important;
+}
+
+
+.name{
+	font-size: 22px;
+	line-height: 70%;
+	margin-top: 20px;
+
+	/*margin-right: 130px;*/
+}
+
+.username{
+	font-size: 14px;
+	line-height: 20%;
+
+}
+.dob{
+	font-size: 14px;
+	line-height: 20%;
+
+}
+.info{
+	font-size: 14px;
+	line-height: 20%;
+
+}
+
+.follow{
+	font-size: 14px;
+	line-height: 20%;
+
+}
+
+.following{
+	font-size: 14px;
+	line-height: 20%;
+
+}
+
+.favourites{
+	font-size: 14px;
+	line-height: 20%;
+
+}
+
+p{
+   font-size: 20px;
+}
+
+.profile_part{
+     position: fixed !important;
+}
+
+/*@media{
+	float : right !important;
+}*/

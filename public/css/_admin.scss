@@ -1,0 +1,203 @@
+$mainColor : #49b797 ;
+$activeColor : #7ec3af ;
+$dustgray : #848484 ;
+$white : #fff ;
+$green : #32ba5b ;
+$blue : #1EADB7 ;
+
+$confirm : #69a96c ;
+$reject : #df625f ;
+$navy : #232c4f ;
+
+.navbar-admin{
+  border-radius : 0 ;
+  border : none ;
+  border-bottom : solid 2px #f0f0f0 ;
+}
+.action-button{
+  margin : 0px 5px ;
+  cursor : pointer ;
+}
+.hidden-button {
+  display: none ;
+}
+.button-action{
+  background: $mainColor ;
+  color : $white ;
+  border: none ;
+  border-radius: 0px ;
+  float : none !important;
+
+  @include transition(0.2) ;
+
+  &:hover, &:active, &:focus {
+    background: $activeColor ;
+    color : $white ;
+  }
+
+  &.button-action-confirm{
+    background: $confirm ;
+  }
+
+  &.button-action-reject {
+    background: $reject ;
+  }
+}
+.button-approve{
+  background: $navy ;
+  font-size : 12px ;
+  color : $white ;
+  border : none ;
+  border-radius : 10px ;
+
+  &:hover{
+    background: $navy ;
+    color : $white ;
+  }
+}
+.button-save{
+  background: $mainColor ;
+  color : $white ;
+  padding-left : 25px ;
+  padding-right: 25px ;
+  border : none ;
+  border-radius : 0px ;
+
+  @include transition(0.2) ;
+
+  &:hover, &:active, &:focus{
+    background: $activeColor ;
+    color : $white ;
+  }
+}
+.button-action-super{
+  background: $navy ;
+  color : $white ;
+  padding-left : 25px ;
+  padding-right : 25px ;
+  border : none ;
+  border-radius : 0px ;
+
+  &:hover, &:active, &:focus{
+    background: $navy ;
+    color : $white ;
+  }
+}
+.btn-leave{
+  border-radius : 0px ;
+  border : none ;
+  float : none !important ;
+}
+.btn-grey{
+  background: #f0f0f0 ;
+  color : #000;
+
+  @include transition(0.1) ;
+
+  &:hover, &:active, &:focus{
+    background: #ccc ;
+    color : #000 ;
+  }
+}
+.btn-navy{
+  background: $navy ;
+  color : $white ;
+
+  &:hover, &:active, &:focus {
+    background: $navy !important;
+    color: $white ;
+  }
+}
+.btn-save {
+  background: $mainColor ;
+  color : $white ;
+
+  &:hover, &:active, &:focus {
+    background: $mainColor ;
+    color: $white ;
+  }
+}
+.data-table-amount{
+  border : solid 1px $dustgray !important ;
+  margin : 0px 10px ;
+}
+.leave-search-form{
+  min-width : 175px ;
+  border : solid 1px $dustgray !important ;
+  font-size: 12px ;
+  margin-left : 20px ;
+  margin-right : 10px ;
+  padding : 3px ;
+}
+
+.panel-setting{
+  & .panel-setting-heading{
+    background: $white ;
+    text-align: center ;
+    font-weight: bold ;
+    border-bottom : none ;
+  }
+}
+
+.tbl-no-border {
+  border : none !important ;
+  & > tbody {
+    & > tr {
+      border : none !important ;
+
+      & > td {
+        border : none !important ;
+      }
+    }
+  }
+}
+.tr-error{
+  background: rgba(223, 98, 95, 0.3) ;
+}
+.tr-success{
+  background: rgba(105, 169, 108, 0.3) ;
+}
+
+table.table-detail-modal{
+  & > tbody{
+    & > tr {
+      & > td {
+        text-align: left !important ;
+      }
+    }
+  }
+}
+
+tr.leave-table-row{
+  cursor : pointer ;
+}
+a.leave-link{
+  color : $mainColor ;
+  text-decoration: none ;
+
+  &:hover, &:focus, &:active{
+    text-decoration: underline ;
+  }
+}
+tbody.reactable-pagination{
+  text-align: right !important ;
+  padding: 10px !important ;
+  margin-top : 10px !important;
+}
+a.reactable-page-button, a.reactable-next-page, a.reactable-previous-page{
+  background: $white ;
+  color : $blue ;
+  padding : 6px 10px ;
+  margin : 3px ;
+  border : solid 1px $blue ;
+  border-radius : 5px ;
+
+  &:hover, &:active, &:focus{
+    text-decoration : none ;
+  }
+
+  &:hover,&.reactable-current-page{
+    background: $blue ;
+    color : $white !important ;
+  }
+}
