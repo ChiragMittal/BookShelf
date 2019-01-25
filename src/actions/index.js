@@ -46,153 +46,22 @@ export const logoutSuccess = (data) => {
     })
 }
 
-// export const doLogOut = (username, token) => (dispatch) => {
-//     // axios.post(
-//     //     //Urls.adminUrl + 'logout',
-//     //     // URL
-//     //     {
-//     //         token: token,
-//     //         username: username
-//     //     }
-//     // ).then(res => {
-//     //     dispatch({
-//     //         type: ACTION.LOGOUT
-//     //     })
-//     // }).catch(err => {
 
-//     // })
+// export const hotsearch = (query) => ({
 
-//     // Access to API
-// }
-
-//Trip Action
-
-export const receiveProduct = (data) => ({
-    type: ACTION.RECEIVE_DATA,
-    payload: {
-        destination: data
-    }
-})
-
-// Set currently selected product variation
-export const selectProduct = (index) => ({
-
-    type: ACTION.SELECT_PRODUCT,
-    payload: {
-        index: index
-    }
-})
-
-// Add item to cart
-export const addToCart = (id, name) => ({
-    type: ACTION.CART_ADD,
-    payload: {
-        id: id,
-        name: name
-
-    }
-})
-
-// Remove item from cart
-export const removeFromCart = (idx) => ({
-
-    type: ACTION.CART_REMOVE,
-    payload: {
-        idx: idx
-    }
-})
-
-// Update cart visibility status
-export const updateCartVisible = (cartVisible) => ({
-
-    type: ACTION.CART_VISIBLE,
-    payload: {
-        cartVisible: cartVisible
-    }
-})
-
-//export const  fetch = (query) => ({
-
-//      type: ACTION.CART_FETCH,
-//	payload:{
-//      query: query
-//  }
-//}),
-
-export const hotsearch = (query) => ({
-
-    type: ACTION.DESTINATIONHOT_SEARCH,
-    payload: {
-        query: query
-    }
-})
-
-export const hotsearch_fetch = (data) => ({
-
-    type: ACTION.DESTINATIONHOT_SEARCHFETCH,
-    payload: {
-        suggestion: data
-    }
-})
-
-export const receiveMap = (data) => ({
-
-    type: ACTION.RECEIVEMAP_DATA,
-    payload: {
-        map: data
-    }
-})
-
-//User Action
-
-
-export const addPhoto = (data) => ({
-    type: ACTION.ADD_PHOTO,
-    payload: {
-        img: data
-    }
-})
-
-export const delPhoto = (data) => ({
-    type: ACTION.DEL_PHOTO,
-    payload: {
-        img: data
-    }
-})
-
-export const editInfo = (data) => ({
-    type: ACTION.EDIT_INFO,
-    payload: {
-        info: data
-    }
-})
-
-// export const retrieveInfo = (data) => ({
-//     type: ACTION.RETRIEVE_INFO,
+//     type: ACTION.BOOK_SEARCH,
 //     payload: {
-//         info: data
+//         query: query
 //     }
 // })
 
-export const recieveInfo = (data) => ({
-    type: ACTION.RECIEVE_INFO,
-    payload: {
-        info: data
-    }
-})
+// export const hotsearch_fetch = (data) => ({
 
-// export const retrievePost = (data) => ({
-//     type: ACTION.RETRIEVE_POST,
+//     type: ACTION.BOOK_SEARCHFETCH,
 //     payload: {
-//         post: data
+//         suggestion: data
 //     }
 // })
 
-export const loadPost = (data) => ({
-    type: ACTION.LOAD_POST,
-    payload: {
-        post: data
-    }
-})
 
 

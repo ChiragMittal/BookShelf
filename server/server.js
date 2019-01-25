@@ -5,7 +5,7 @@ const app        = express();
 const bodyParser = require('body-parser');
 const config = require('./configuration');
 const axios = require('axios');
-
+const path = require("path");
 app.use(function(req,res,next){
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
@@ -13,19 +13,23 @@ app.use(function(req,res,next){
     next();
 });
 
-const port = process.env.PORT || 5000;
-
+const port =  8000;
+// const publicPath = path.join(__dirname,"../index.html");
+// console.log(publicPath);
 app.use(morgan("dev"));
 // app.use(express.static("./"));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
+//app.use(express.static('public')) ;
 
-app.get("/api", express.json(), async (req, res) => {
-    //const { query, field } = req.body;
-    const query = "Dan Brown";
-    const  field = "Author";
+
+
+app.post("/search", express.json(), async (req, res) => {
+    const { query, field } = req.body;
+    
     const encodedQuery = encodeURIComponent(query);
     const maxResults = 20;
+    console.log(query)
     try {
       const url = `https://www.googleapis.com/books/v1/volumes?printType=books&q=${field}:${encodedQuery}&key=${config.google.key
       }&maxResults=${maxResults}`;
@@ -35,6 +39,11 @@ app.get("/api", express.json(), async (req, res) => {
     } catch (e) {
       res.status(400).send(e);
     }
+  });
+
+  app.get("*",(req, res) => {
+    res.sendFile(express.static(path.join(__dirname,"../index.html")));
+    
   });
 
 app.listen(port, function () {
