@@ -19,7 +19,7 @@ class AppsRoutes extends Component {
       <Switch>
         {/* Will redirect to auth in booting app */}
         <Route exact path="/" render={(props) => (<Home {...appProps} />)} />
-        <Route exact path="/search"  render={(props) => (<BookSearch {...appProps} />)} />
+        <Route path="/search"  render={(props) => (<BookSearch {...appProps} />)} />
         {/* <Route exact path="/destination/search" render={(props) => (<FluxCartApp {...appProps} />)} /> */}
         {/* Accessing auth directly will bring to login page */}
         <Route component={NoMatch} />
