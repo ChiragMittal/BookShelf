@@ -13,7 +13,7 @@ app.use(function(req,res,next){
     next();
 });
 
-const port =  8000;
+const port =  3000;
 // const publicPath = path.join(__dirname,"../index.html");
 // console.log(publicPath);
 app.use(morgan("dev"));

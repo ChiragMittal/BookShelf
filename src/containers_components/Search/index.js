@@ -17,11 +17,13 @@ class BookSearch extends React.Component {
       }
     async loadData() {
      this.setState({ loading: true, data: [], error: "" });
+     console.log('loadData', this.state.query, this.state.field)
      try {
        const response = await callGoogleBooks(
         this.state.query,
         this.state.field
       );
+      console.log('response', response)
       
       if (response.data) {
         
@@ -35,8 +37,8 @@ class BookSearch extends React.Component {
             const description = book.volumeInfo.description || "";
             const pageCount = book.volumeInfo.pageCount || null;
             const hasThumbnail = book.volumeInfo.imageLinks || null;
-            const amount  = book.volumeInfo.saleInfo.retailPrice.amount || null;
-            const currency_code = book.volumeInfo.saleInfo.retailPrice.currencyCode || "";
+            const amount  = book.volumeInfo.saleInfo && book.volumeInfo.saleInfo.retailPrice.amount || null;
+            const currency_code = book.volumeInfo.saleInfo && book.volumeInfo.saleInfo.retailPrice.currencyCode || "";
             let thumbnailLink;
             hasThumbnail
               ? (thumbnailLink = book.volumeInfo.imageLinks.thumbnail.replace(
@@ -69,6 +71,8 @@ class BookSearch extends React.Component {
               loading: false,
               error: "🙅 No matches! 🙅"
             });
+      console.log('data', data)
+
       } else {
         this.setState({
           loading: false,
@@ -76,6 +80,7 @@ class BookSearch extends React.Component {
         });
       }
     } catch (e) {
+      console.log('error', e)
       this.setState({
         loading: false,
         error: "There was an error connecting to Google Books."
@@ -116,6 +121,7 @@ class BookSearch extends React.Component {
           onFieldChange={this.onFieldChange.bind(this)}
           submitForm={this.submitForm.bind(this)}
         />
+        {JSON.stringify(this.state.data)}
       </section>
       
     );
