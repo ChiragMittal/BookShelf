@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Pagination from "react-js-pagination";
 import Book from "./Single_book";
+import Loader from 'react-loaders'
+
 
 class Multi_Books extends React.Component {
     constructor(props){
@@ -20,12 +22,13 @@ class Multi_Books extends React.Component {
     dropBooks(){
         const { books, loading, forSearch } = this.props;
         if (books.length) {
+            console.log(books.length)
         return this.divideBooks(books).map(book => (
         <Book key={book.volumeID} book={book} forSearch={forSearch} />
               ));
             } 
         else if (loading) {
-            return (<p>Loading..............</p>);
+            return (<Loader type="ball-scale-ripple" />);
                 } 
         else if (forSearch) {
             return;
@@ -49,23 +52,24 @@ class Multi_Books extends React.Component {
         const { shelf, stacked, forSearch } = this.props;
         return (
           <div className={forSearch?"books_stacked":"books_not_stacked"}>
-           { this.state.page && (
+           {/* { this.state.page && (
               stacked ? (
-                <Link to={`/shelves/${shelf.replace(/\s+/g, "-").toLowerCase()}`} className="books_head">
+                <Link to={`/shelves/${shelf}`} className="books_head">
                         {shelf}
                 </Link>) : (
                 <span className="books_head">{shelf}</span> )
-           )}
-           {stacked && <div className="books_wrap">{this.dropBooks()}</div>}
+           )} */}
+            {stacked && <div className="books_wrap">{this.dropBooks()}</div>}
             {!stacked && this.dropBooks()}
-            <Pagination
+            { <Pagination
               activePage={this.state.page}
               itemsCountPerPage={this.props.perPage}
               totalItemsCount={this.props.books.length}
-              onChange={this.handlePageChange}
-            />
+              onChange={this.handlePageChange.bind(this)}
+            />}
           </div>
         );
+        
       }
 }
 

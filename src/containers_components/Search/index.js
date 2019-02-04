@@ -3,6 +3,7 @@ import SearchInput from "./input";
 //import BooksContainer from "../Books/BooksContainer";
 
 import { callGoogleBooks } from "../../APIs/google_api";
+import Multi_Books from "../Book/Multi_books";
 
 class BookSearch extends React.Component {
     constructor(props) {
@@ -121,7 +122,8 @@ class BookSearch extends React.Component {
           onFieldChange={this.onFieldChange.bind(this)}
           submitForm={this.submitForm.bind(this)}
         />
-        {JSON.stringify(this.state.data)}
+        <Multi_Books books={this.state.data} loading={this.state.loading} error={this.state.error} perPage={1} stacked forSearch />
+        {/* {JSON.stringify(this.state.data)} */}
       </section>
       
     );

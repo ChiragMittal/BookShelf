@@ -55,7 +55,7 @@ if (process.env.NODE_ENV != 'production') {
             <Router history={history}>
               <Route component={component} />
             </Router>
-            <DevTools />
+            {/* <DevTools /> */}
           </div>
         </AppContainer>
       </Provider>,
