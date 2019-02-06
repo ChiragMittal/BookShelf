@@ -12,7 +12,7 @@ import throttle from 'lodash/throttle'
 import { loadState, saveState } from './localStorage'
 
 // import css
-import './assets/css/index.scss'
+//import './assets/css/index.scss'
 // import jQuery from 'jquery'
 import 'bootstrap'
 

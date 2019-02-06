@@ -122,7 +122,7 @@ class BookSearch extends React.Component {
           onFieldChange={this.onFieldChange.bind(this)}
           submitForm={this.submitForm.bind(this)}
         />
-        <Multi_Books books={this.state.data} loading={this.state.loading} error={this.state.error} perPage={1} stacked forSearch />
+        <Multi_Books books={this.state.data} loading={this.state.loading} error={this.state.error} perPage={10} stacked forSearch />
         {/* {JSON.stringify(this.state.data)} */}
       </section>
       

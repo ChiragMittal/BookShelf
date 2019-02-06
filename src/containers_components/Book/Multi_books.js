@@ -49,25 +49,32 @@ class Multi_Books extends React.Component {
       };
 
       render() {
-        const { shelf, stacked, forSearch } = this.props;
+        const { shelf, stacked, forSearch,books } = this.props;
         return (
           <div className={forSearch?"books_stacked":"books_not_stacked"}>
-           {/* { this.state.page && (
-              stacked ? (
-                <Link to={`/shelves/${shelf}`} className="books_head">
-                        {shelf}
-                </Link>) : (
-                <span className="books_head">{shelf}</span> )
-           )} */}
-            {stacked && <div className="books_wrap">{this.dropBooks()}</div>}
-            {!stacked && this.dropBooks()}
-            { <Pagination
-              activePage={this.state.page}
-              itemsCountPerPage={this.props.perPage}
-              totalItemsCount={this.props.books.length}
-              onChange={this.handlePageChange.bind(this)}
-            />}
+            {this.state.page && (
+                <div>
+                {stacked && <div className="books_wrap">{this.dropBooks()}</div>}
+                {!stacked && this.dropBooks()}
+                {this.divideBooks(books).length ? 
+                <div>
+                { <Pagination
+                  activePage={this.state.page}
+                  itemsCountPerPage={this.props.perPage}
+                  totalItemsCount={this.props.books.length}
+                  onChange={this.handlePageChange.bind(this)}
+                />}
+                </div>  :
+                <div></div>
+            }
+                                  
+                
+                </div>
+            )}
+           
+            
           </div>
+           
         );
         
       }

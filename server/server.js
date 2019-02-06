@@ -28,7 +28,7 @@ app.post("/search", express.json(), async (req, res) => {
     const { query, field } = req.body;
     
     const encodedQuery = encodeURIComponent(query);
-    const maxResults = 20;
+    const maxResults = 30;
     console.log(query)
     try {
       const url = `https://www.googleapis.com/books/v1/volumes?printType=books&q=${field}:${encodedQuery}&key=${config.google.key

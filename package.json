@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --config webpack.config.js",
     "prod": "webpack -p --config webpack.prod.config.js",
-    "server": "node server/server.js"
+    "server": "nodemon server/server.js",
+    "sass": "npm-sass ./public/sass/books.sass > ./public/css/books.css"
   },
   "repository": {
     "type": "git",
@@ -64,6 +65,7 @@
     "node-schedule": "^1.2.3",
     "nodemailer": "^4.0.1",
     "nodemon": "^1.18.9",
+    "npm-sass": "^2.3.0",
     "on-finished": "^2.3.0",
     "opn": "^5.1.0",
     "parseurl": "^1.3.1",
@@ -83,6 +85,7 @@
     "react-fontawesome": "^1.6.1",
     "react-js-pagination": "^3.0.2",
     "react-loaders": "^3.0.1",
+    "react-modal": "^3.8.1",
     "react-redux": "^5.0.5",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
