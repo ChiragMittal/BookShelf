@@ -10,8 +10,8 @@
 
 .ball-scale-ripple > div {
   animation-fill-mode: both;
-  height: 50px;
-  width: 50px;
+  height: 300px;
+  width: 300px;
   border-radius: 100%;
   border: 2px solid blue;
   animation: ball-scale-ripple 1s 0s infinite cubic-bezier(0.21, 0.53, 0.56, 0.8); }
@@ -21,3 +21,54 @@
 
 .loader-active {
   display: block; }
+
+.modal-body {
+  height: 33rem; }
+
+.modal_book_in {
+  margin-left: 150px; }
+
+.modal_book_cover {
+  float: left;
+  height: 160px;
+  width: fit-content; }
+
+.modal_book_info {
+  display: inline; }
+
+.modal_book_submit {
+  float: right; }
+
+.modal_book_delete {
+  float: right; }
+
+.modal_book_book-description {
+  float: left;
+  margin-top: 20px; }
+
+.modal_book_select {
+  float: left; }
+
+.modal_close {
+  float: right; }
+
+i {
+  margin-right: 4px;
+  font-size: 20px; }
+
+.books_wrap {
+  display: flex;
+  align-items: center; }
+
+.book_cover {
+  position: relative; }
+  .book_cover:hover {
+    transform: translateY(-0.5rem) scale(1.2);
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.4);
+    z-index: 10; }
+
+.books {
+  margin-top: 10em;
+  display: grid;
+  margin-right: -90px;
+  margin-left: 50px; }

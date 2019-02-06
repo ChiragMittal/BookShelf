@@ -6,11 +6,57 @@ $primary-color: blue;
 
 .loader-active 
     display: block
+    
 
+.modal-body
+    height : 33rem
 
 .modal_book
-    // &_info
-    //     float: right
+    &_in
+        margin-left: 150px
+        
+    &_cover
+        float: left
+        height: 160px
+        width: fit-content
+        
+    &_info
+        display: inline
+    &_submit
+        float: right
+    &_delete
+        float: right    
+    &_book-description
+        float: left  
+        margin-top: 20px    
+    &_select
+        float: left          
+
+
+.modal_close
+    float: right
+
+i
+    margin-right: 4px
+    font-size: 20px    
+
+
+.books_wrap
+    display: flex
+    align-items: center
+
+.book_cover
+    position: relative
+    &:hover
+        transform: translateY(-0.5rem) scale(1.2)
+        box-shadow: 0 1.5rem 4rem rgba(black, 0.4)
+        z-index: 10
+
+.books
+    margin-top: 10em
+    display: grid
+    margin-right: -90px
+    margin-left: 50px
     
-    // &_author
-    //     vertical-align: middle
+    
+   

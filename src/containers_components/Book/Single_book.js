@@ -39,10 +39,13 @@ class Book extends React.Component{
         } = this.props.book;
         return (
         <div className="books">
-            <a onClick={this.handleOpenModal.bind(this)}>
+     
+        <a onClick={this.handleOpenModal.bind(this)}>
                  <img className="book_cover" src={thumbnailLink} />
                  
             </a>
+       
+            
 
             <Modal show={this.state.showModal} onHide={this.handleCloseModal.bind(this)}>
          
@@ -54,21 +57,13 @@ class Book extends React.Component{
                         </a>
                         
                         <div className="modal_book_info">
-                        <Grid>
-                        <Row>
                         { <img className="modal_book_cover"src={thumbnailLink} />}
-    
-                            <Col md={6} mdOffset={8}>
-                            <p> <Glyphicon glyph="book" /> 
+                            <div className="modal_book_in">
+                            <p><i><Glyphicon glyph="book" /></i>  
                                     {title}
-                            {subtitle}</p>   
-                            </Col>
-                        </Row>
-                        </Grid>
-                        
+                            {subtitle.length ? -{subtitle} : " "}</p>   
                             
-                        
-                            
+                                                    
                         <p> <i className="author"  ><Glyphicon glyph="user" /></i>
                             {authors ? authors.join(", ") : "No author information."}</p>
                             <p> <i className="pages"  ><Glyphicon glyph="file" /></i>
@@ -82,27 +77,34 @@ class Book extends React.Component{
                             <p><i className="currency"  ><Glyphicon glyph="usd" /></i>
                             {currency_code}
                             {amount ? `${pageCount}` : "No amount information " }</p> 
+            </div>
+                            
                          </div>
-                            <p className="book-modal__book-description">
-                                    {description.length > 400? description.slice(0, 400) + " ...": description}
+                            <p className="modal_book_book-description">
+                                    {description.length > 200? description.slice(0, 200) + " ...": description}
                             </p>
-                            <select className="book-modal__select" value={this.state.shelf} >
+                            <select className="modal_book_select" value={this.state.shelf} >
                                 <option value="Read">Read</option>
                                 <option value="Want to Read">Want to Read</option>
                                 <option value="Currently Reading">Currently Reading</option>
                             </select> 
-                         {forSearch ? (
-                            <a className="book-modal__submit" >
+                            </div>
+            </Modal.Body> 
+                        <Modal.Footer>
+                        {forSearch ? (
+                            <a className="modal_book_submit" >
                                 <i className="done"  ><Glyphicon glyph="ok" /></i>
                             </a>
                             ) : (
-                            <a className="book-modal__delete" >
+                            <a className="modal_book_delete" >
                                 <i className="delete"  ><Glyphicon glyph="trash" /></i>
                             </a>
                             )}
-                    </div>
+                            </Modal.Footer>       
+                         
+                    
 
-          </Modal.Body>
+          
           
         </Modal>
         </div>
