@@ -37,7 +37,7 @@ export const loginFailed = () => ({
 })
 
 export const logoutSuccess = (data) => {
-    console.log('logging in')
+    console.log('logging out')
     return ({
         type: ACTION.LOGOUT_SUCCESS,
         payload: {
@@ -46,22 +46,34 @@ export const logoutSuccess = (data) => {
     })
 }
 
+export const addBook = (data) => {
+    return ({
+        type: ACTION.ADD_BOOK,
+        
+            data: data
+        
+    })
+}
 
-// export const hotsearch = (query) => ({
+export const deleteBook = (id) => {
+    return ({
+        type: ACTION.DELETE_BOOK,
+        
+            id: id
+        
+    })
+}
 
-//     type: ACTION.BOOK_SEARCH,
-//     payload: {
-//         query: query
-//     }
-// })
+export const editBook = (id,shelfStatus) => {
+    return ({
+        type: ACTION.EDIT_BOOK,
+       
+            id,
+            shelfStatus
+        
+    })
+}
 
-// export const hotsearch_fetch = (data) => ({
-
-//     type: ACTION.BOOK_SEARCHFETCH,
-//     payload: {
-//         suggestion: data
-//     }
-// })
 
 
 

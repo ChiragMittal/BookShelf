@@ -9,6 +9,7 @@ import { Modal, Button, OverlayTrigger } from 'react-bootstrap';
 class Book extends React.Component{
     constructor(props){
         super(props);
+       // self = this;
         this.state = {
             showModal: false,
             shelf: this.props.book.shelfStatus ? this.props.book.shelfStatus : "Want to Read"
@@ -22,6 +23,32 @@ class Book extends React.Component{
       handleCloseModal () {
         
         this.setState({ showModal: false });
+      };
+      async addBook (){
+       
+        const book = Object.assign({}, this.props.book, {
+          shelfStatus: this.state.shelf
+        });
+        try {
+          await console.log(JSON.stringify(book))
+          this.handleCloseModal();
+        } catch (e) {
+          
+        }
+      };
+
+    //   async editBook () {
+    //     const book = { this.props.book, shelfStatus: this.state.shelf };
+    //     try {
+    //       await console.log(book)
+    //     } catch (e) {}
+    //   };
+
+      onShelfChange (e) {
+        const shelf = e.target.value;
+        this.props.book.shelfStatus
+          ? this.setState({ shelf }, () => this.addBook())
+          : this.setState({ shelf });
       };
 
       render(){
@@ -83,7 +110,7 @@ class Book extends React.Component{
                             <p className="modal_book_book-description">
                                     {description.length > 200? description.slice(0, 200) + " ...": description}
                             </p>
-                            <select className="modal_book_select" value={this.state.shelf} >
+                            <select className="modal_book_select" value={this.state.shelf} onChange={this.onShelfChange.bind(this)}>
                                 <option value="Read">Read</option>
                                 <option value="Want to Read">Want to Read</option>
                                 <option value="Currently Reading">Currently Reading</option>
@@ -92,7 +119,7 @@ class Book extends React.Component{
             </Modal.Body> 
                         <Modal.Footer>
                         {forSearch ? (
-                            <a className="modal_book_submit" >
+                            <a className="modal_book_submit" onClick={this.addBook.bind(this)}>
                                 <i className="done"  ><Glyphicon glyph="ok" /></i>
                             </a>
                             ) : (

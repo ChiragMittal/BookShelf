@@ -1,6 +1,7 @@
 const express    = require('express');
 const morgan     = require("morgan");
 const app        = express();
+const helmet = require('helmet');
 // var data = require( "./js/data.json");
 const bodyParser = require('body-parser');
 const config = require('./configuration');
@@ -20,6 +21,7 @@ app.use(morgan("dev"));
 // app.use(express.static("./"));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(helmet());
 //app.use(express.static('public')) ;
 
 

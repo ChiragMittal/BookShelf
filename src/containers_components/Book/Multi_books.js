@@ -28,7 +28,7 @@ class Multi_Books extends React.Component {
               ));
             } 
         else if (loading) {
-            return (<Loader type="ball-scale-ripple" />);
+            return (<Loader type="ball-scale-multiple" />);
                 } 
         else if (forSearch) {
             return;
