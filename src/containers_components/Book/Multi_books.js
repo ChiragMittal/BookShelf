@@ -53,6 +53,18 @@ class Multi_Books extends React.Component {
         return (
           <div className={forSearch?"books_stacked":"books_not_stacked"}>
             {this.state.page && (
+                <div className={stacked ? "books_layout_stacked" : "books_layout"}>
+                    {shelf && 
+                    (stacked ? (
+                        <Link
+                          to={`/${shelf.replace(/\s+/g, "-").toLowerCase()}`}
+                          className="books__heading"
+                        >
+                          {shelf}
+                        </Link>
+                      ) : (
+                        <span className="books__heading">{shelf}</span>
+                      ))}
                 <div>
                 {stacked && <div className="books_wrap">{this.dropBooks()}</div>}
                 {!stacked && this.dropBooks()}
@@ -68,7 +80,7 @@ class Multi_Books extends React.Component {
                 <div></div>
             }
                                   
-                
+                                  </div>  
                 </div>
             )}
            

@@ -30,25 +30,25 @@ class Book extends React.Component{
           shelfStatus: this.state.shelf
         });
         try {
-          await console.log(JSON.stringify(book))
+          //await console.log(JSON.stringify(book))
           this.handleCloseModal();
         } catch (e) {
-          
+          console.log(e);
         }
       };
 
-    //   async editBook () {
-    //     const book = { this.props.book, shelfStatus: this.state.shelf };
-    //     try {
-    //       await console.log(book)
-    //     } catch (e) {}
-    //   };
+      async editBook () {
+        const book = { ...this.props.book, shelfStatus: this.state.shelf};
+        try {
+            console.log(book)
+        } catch (e) {}
+      };
 
       onShelfChange (e) {
         const shelf = e.target.value;
-        this.props.book.shelfStatus
-          ? this.setState({ shelf }, () => this.addBook())
-          : this.setState({ shelf });
+        console.log(shelf)
+        this.props.book.shelfStatus ? this.setState({ shelf }, () => this.editBook().bind(this)): this.setState({ shelf });
+        
       };
 
       render(){
@@ -101,9 +101,6 @@ class Book extends React.Component{
                                 ? identifiers[0].identifier
                                 : "No ISBN or other identifying information."}
                             </p>
-                            <p><i className="currency"  ><Glyphicon glyph="usd" /></i>
-                            {currency_code}
-                            {amount ? `${pageCount}` : "No amount information " }</p> 
             </div>
                             
                          </div>

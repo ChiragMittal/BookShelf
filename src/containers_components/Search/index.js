@@ -38,8 +38,6 @@ class BookSearch extends React.Component {
             const description = book.volumeInfo.description || "";
             const pageCount = book.volumeInfo.pageCount || null;
             const hasThumbnail = book.volumeInfo.imageLinks || null;
-            const amount  = book.volumeInfo.saleInfo && book.volumeInfo.saleInfo.retailPrice.amount || null;
-            const currency_code = book.volumeInfo.saleInfo && book.volumeInfo.saleInfo.retailPrice.currencyCode || "";
             let thumbnailLink;
             hasThumbnail
               ? (thumbnailLink = book.volumeInfo.imageLinks.thumbnail.replace(
@@ -55,11 +53,10 @@ class BookSearch extends React.Component {
               authors,
               description,
               pageCount,
-              thumbnailLink,
-              amount,
-              currency_code
+              thumbnailLink
             };
-          }).filter(
+          }
+          ).filter(
             book =>
               book.thumbnailLink !== "" &&
               book.authors.length !== 0 &&
@@ -72,7 +69,7 @@ class BookSearch extends React.Component {
               loading: false,
               error: "🙅 No matches! 🙅"
             });
-      console.log('data', data)
+      
 
       } else {
         this.setState({

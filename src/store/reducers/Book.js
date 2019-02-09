@@ -9,13 +9,14 @@ export default  (state = [], action) => {
         case ACTION.DELETE_BOOK:
             return state.filter(({ id }) => id !== action.id);
 
-        // case ACTION.EDIT_BOOK:
-        //     return state.map(book => {
-        //         if (book.id === action.id) {
-        //         return {...book, shelfStatus: action.shelfStatus };
-        //                 }
-        //         return book;
-        //             });
+        case ACTION.EDIT_BOOK:
+            return state.map(book => {
+                 (book.id === action.id) ? { ...book, shelfStatus: action.shelfStatus } : book;
+                        
+                return book;
+                    });
+
+                    
         default:
             return state;                
     }

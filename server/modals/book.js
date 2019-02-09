@@ -9,11 +9,6 @@ const BookSchema = new mongoose.Schema({
   authors: {
     type: [String],
     required: true,
-    validate: [
-      function() {
-        return this.authors.length > 0;
-      },
-    ]
   },
   title: {
     type: String,
@@ -43,15 +38,10 @@ const BookSchema = new mongoose.Schema({
     enum: ["Read", "Currently Reading", "Want to Read"],
     required: true
   },
-  price:{
-      amount: Number,
-      currency_code: String ,
-      
-  },
-  _owner: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true
-  }
+  // _owner: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   required: true
+  // }
 });
 
 const Book = mongoose.model("Book", BookSchema);
