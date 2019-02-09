@@ -16,7 +16,7 @@ const CurrentlyReading = ({ books }) =>
 
 
 const mapStateToProps = state  => ({
-    //books: state.books.filter(book => book.shelfStatus === "Currently Reading")
+    books: state.books.filter(book => book.shelfStatus === "Currently Reading")
   });
   
   export default connect(mapStateToProps)(CurrentlyReading);
