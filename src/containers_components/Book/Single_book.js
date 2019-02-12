@@ -30,7 +30,7 @@ class Book extends React.Component{
           shelfStatus: this.state.shelf
         });
         try {
-          //await console.log(JSON.stringify(book))
+          await console.log(JSON.stringify(book))
           this.handleCloseModal();
         } catch (e) {
           console.log(e);
@@ -40,15 +40,16 @@ class Book extends React.Component{
       async editBook () {
         const book = { ...this.props.book, shelfStatus: this.state.shelf};
         try {
-            console.log(book)
-        } catch (e) {}
+            await console.log(JSON.stringify(book))
+        } catch (e) {
+            console.log(e);
+        }
       };
 
       onShelfChange (e) {
         const shelf = e.target.value;
         console.log(shelf)
-        this.props.book.shelfStatus ? this.setState({ shelf }, () => this.editBook().bind(this)): this.setState({ shelf });
-        
+        this.props.book.shelfStatus ? this.setState({ shelf }, () => this.editBook()): this.setState({ shelf });
       };
 
       render(){
@@ -60,9 +61,7 @@ class Book extends React.Component{
           subtitle,
           authors,
           pageCount,
-          description,
-          amount,
-          currency_code
+          description
         } = this.props.book;
         return (
         <div className="books">
