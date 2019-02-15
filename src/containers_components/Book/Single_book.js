@@ -4,8 +4,8 @@ import React from "react";
 import { Glyphicon, Row,Col,Grid} from 'react-bootstrap';
 import { connect } from "react-redux";
 import { Modal, Button, OverlayTrigger } from 'react-bootstrap';
+import {beginAddBook} from "../../actions/index";
 
-//Modal.setAppElement("#root");
 class Book extends React.Component{
     constructor(props){
         super(props);
@@ -24,13 +24,14 @@ class Book extends React.Component{
         
         this.setState({ showModal: false });
       };
+
       async addBook (){
        
         const book = Object.assign({}, this.props.book, {
           shelfStatus: this.state.shelf
         });
         try {
-          await console.log(JSON.stringify(book))
+            await this.props.beginAddBook(book);
           this.handleCloseModal();
         } catch (e) {
           console.log(e);
@@ -96,9 +97,7 @@ class Book extends React.Component{
                             {pageCount ? `${pageCount} pages` : "No page information."}</p>
                             <p><i className="isbn"  ><Glyphicon glyph="tasks" /></i>
                             
-                                {identifiers.length
-                                ? identifiers[0].identifier
-                                : "No ISBN or other identifying information."}
+                                {identifiers.length ? identifiers[0].identifier: "No ISBN or other identifying information."}
                             </p>
             </div>
                             
@@ -137,4 +136,8 @@ class Book extends React.Component{
     
 };
 
-export default Book;
+const mapDispatchToProps = dispatch => ({
+    beginAddBook: book => dispatch(beginAddBook(book)),
+  });
+
+  export default connect(undefined, mapDispatchToProps)(Book);

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import * as ACTION from '../constants'
+import { postToBooks } from "../APIs/book";
 
 export const attemptLogin = (username, password) => ({
     type: ACTION.LOGIN_ATTEMPT,
@@ -45,6 +46,12 @@ export const logoutSuccess = (data) => {
         }
     })
 }
+
+export const beginAddBook = (book = {}) => {
+    return dispatch => {
+      return postToBooks(book).then(({ data }) => dispatch(addBook(data)));
+    };
+  };
 
 export const addBook = (data) => {
     return ({

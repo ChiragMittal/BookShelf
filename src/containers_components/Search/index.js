@@ -2,7 +2,7 @@ import React from "react";
 import SearchInput from "./input";
 //import BooksContainer from "../Books/BooksContainer";
 
-import { callGoogleBooks } from "../../APIs/google_api";
+import { callGoogleBooks } from "../../APIs/book";
 import Multi_Books from "../Book/Multi_books";
 
 class BookSearch extends React.Component {
