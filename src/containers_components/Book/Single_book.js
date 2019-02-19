@@ -4,7 +4,7 @@ import React from "react";
 import { Glyphicon, Row,Col,Grid} from 'react-bootstrap';
 import { connect } from "react-redux";
 import { Modal, Button, OverlayTrigger } from 'react-bootstrap';
-import {beginAddBook} from "../../actions/index";
+import {beginDeleteBook,beginAddBook} from "../../actions/index";
 
 class Book extends React.Component{
     constructor(props){
@@ -35,6 +35,14 @@ class Book extends React.Component{
           this.handleCloseModal();
         } catch (e) {
           console.log(e);
+        }
+      };
+
+      async deleteBook () {
+        try {
+          await this.props.beginDeleteBook(this.props.book);
+        } catch (e) {
+            console.log(e);
         }
       };
 
@@ -118,7 +126,7 @@ class Book extends React.Component{
                                 <i className="done"  ><Glyphicon glyph="ok" /></i>
                             </a>
                             ) : (
-                            <a className="modal_book_delete" >
+                            <a className="modal_book_delete" onClick={this.deleteBook.bind(this)}>
                                 <i className="delete"  ><Glyphicon glyph="trash" /></i>
                             </a>
                             )}
@@ -138,6 +146,7 @@ class Book extends React.Component{
 
 const mapDispatchToProps = dispatch => ({
     beginAddBook: book => dispatch(beginAddBook(book)),
+    beginDeleteBook: book => dispatch(beginDeleteBook(book))
   });
 
   export default connect(undefined, mapDispatchToProps)(Book);

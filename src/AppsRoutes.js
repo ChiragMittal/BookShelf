@@ -5,6 +5,7 @@ import Home from './containers_components/Home'
 import NoMatch from './containers_components/NoMatch'
 import BookSearch from './containers_components/Search/index'
 import CurrentlyReading from './containers_components/Shelves/Currently_Reading'
+import Register from './containers_components/Auth/register'
 
 
 class AppsRoutes extends Component {
@@ -21,6 +22,7 @@ class AppsRoutes extends Component {
         {/* Will redirect to auth in booting app */}
         <Route exact path="/" render={(props) => (<Home {...appProps} />)} />
         <Route path="/search"  render={(props) => (<BookSearch {...appProps} />)} />
+        <Route path="/register"  render={(props) => (<Register {...appProps} />)} />
         <Route path="/currently-reading"  render={(props) => (<CurrentlyReading {...appProps} />)} />
         {/* <Route exact path="/destination/search" render={(props) => (<FluxCartApp {...appProps} />)} /> */}
         {/* Accessing auth directly will bring to login page */}

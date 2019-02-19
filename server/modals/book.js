@@ -38,10 +38,11 @@ const BookSchema = new mongoose.Schema({
     enum: ["Read", "Currently Reading", "Want to Read"],
     required: true
   },
-  // _owner: {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   required: true
-  // }
+  _owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref:'User',
+    required: true
+  }
 });
 
 const Book = mongoose.model("Book", BookSchema);

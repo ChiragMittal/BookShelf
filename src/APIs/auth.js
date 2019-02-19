@@ -1,37 +1,14 @@
 import axios from 'axios'
-import * as URL from './APIs_url'
 
-export const Login = (username, password) => {
-    return new Promise((resolve, reject) => {
-        // axios.post(
-        //     URL.LOGIN, {
-        //         username: username,
-        //         password: password
-        //     })
-        //     .then((res) => resolve(res))
-        //     .catch((err) => reject(err))
+export function addUser (userData){
+    
+    return axios.post("http://localhost:3000/register", {userData});
+  };
 
-        resolve({
-            success: true,
-            data: {
-                username: username,
-                token: 'abcdefghijklmn'
-            }
-        })
-    })
-}
+  export const loginUser = (userData) => {
+    return axios.post("http://localhost:3000/login", {userData});
+  };  
 
-export const Logout = () => {
-    return new Promise((resolve, reject) => {
-        // axios.post(
-        //     URL.LOGOUT, {})
-        //     .then((res) => resolve(res))
-        //     .catch((err) => reject(err))
-
-        resolve({
-            success: true,
-            message: 'You have been loggedout',
-            data: {}
-        })
-    })
-}
+  export const callLogout = token => {
+    return axios.delete("/logout", { headers: { "x-auth": token } });
+  };

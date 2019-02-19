@@ -1,51 +1,31 @@
 import axios from 'axios'
 import * as ACTION from '../constants'
-import { postToBooks } from "../APIs/book";
+import { postToBooks ,deleteFromBook ,getFromBooks} from "../APIs/book";
+import {addUser , loginUser} from "../APIs/auth"
 
-export const attemptLogin = (username, password) => ({
-    type: ACTION.LOGIN_ATTEMPT,
-    payload: {
-        username: username,
-        password: password
-    }
-})
+export const loginUserData = userData => ({
+    type: ACTION.LOGIN,
+    userData
+  });
 
-// export const loginSuccess = (username, token, loggedAt) => ({
-//     type: ACTION.LOGIN_SUCCESS,
-//     payload: {
-//         status: 'success',
-//         username: username,
-//         token: token,
-//         loggedAt: loggedAt
-//     }
-// })
+  export const beginLogin = userData => dispatch =>{
+    return loginUser(userData).then(({data}) => dispatch(loginUserData(data)))
+}    
 
-export const loginSuccess = (data) => {
-    console.log('logging in')
-    return ({
-        type: ACTION.LOGIN_SUCCESS,
-        payload: {
-            status: 'success',
-            username: data.username,
-            token: data.token
-        }
-    })
-}
+export const logout = () => ({
+    type: ACTION.LOGOUT,
+  });
 
-export const loginFailed = () => ({
-    type: ACTION.LOGIN_FAILED,
+  
 
-})
-
-export const logoutSuccess = (data) => {
-    console.log('logging out')
-    return ({
-        type: ACTION.LOGOUT_SUCCESS,
-        payload: {
-            status: 'success'
-        }
-    })
-}
+export const registerUser = userData => ({
+    type: ACTION.REGISTER,
+    userData
+  });
+  
+export const beginRegister = userData => dispatch =>{
+    return addUser(userData).then(({data}) => dispatch(registerUser(data)))
+}  
 
 export const beginAddBook = (book = {}) => {
     return dispatch => {
@@ -61,6 +41,14 @@ export const addBook = (data) => {
         
     })
 }
+
+export function beginDeleteBook (book) {
+    return dispatch => {
+      return deleteFromBook(book).then(({ data }) =>
+        dispatch(deleteBook(data))
+      );
+    };
+  };
 
 export const deleteBook = (id) => {
     return ({
@@ -80,6 +68,17 @@ export const editBook = (id,shelfStatus) => {
         
     })
 }
+
+export const beginGetBooks = () => {
+    return dispatch => {
+      return getFromBooks().then(({ data }) => dispatch(getBooks(data)));
+    };
+  };
+  
+  const getBooks = books => ({
+    type: "SET_BOOKS",
+    books
+  });
 
 
 
