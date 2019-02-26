@@ -2,6 +2,7 @@ const express    = require('express');
 const morgan     = require("morgan");
 const app        = express();
 const helmet = require('helmet');
+const _ = require("lodash");
 // var data = require( "./js/data.json");
 const jwt = require("jsonwebtoken");
 const bodyParser = require('body-parser');
@@ -11,14 +12,15 @@ const path = require("path");
 const { localStorage } = require('node-localstorage/LocalStorage');
 const { Book } = require("./modals/book");
 var { User }= require('./modals/user');
-const _ = require("lodash");
+
 const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 const { authenticate } = require("./middleware/index");
 app.use(function(req,res,next){
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "*");
     res.header("Access-Control-Expose-Headers", "x-auth");
-    res.header ('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE');
+    res.header ('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE,PATCH');
     next();
 });
 
@@ -29,14 +31,6 @@ mongoose.connect("mongodb://localhost:27017/books",(err,db) => {
     
     }
 });
-
-// mongoose.connect("mongodb://localhost:27017/books_auth",(err,db) => {
-//     if(!err){
-//         console.log(" both connected");
-
-    
-//     }
-// });
 
 const port =  3000;
 // const publicPath = path.join(__dirname,"../index.html");
@@ -114,11 +108,48 @@ app.post("/search", express.json(), async (req, res) => {
     
     Book.find({_owner: res.locals.user[0]._id}).exec(function(err,result){
         if (err) res.status(500).send(error)
-
+      console.log(result)
         res.send(result);
     })
 
 
+});
+
+app.get("/books/:id", authenticate, async (req, res) => {
+  const id = req.params.id;
+ 
+  try {
+    const book = await Book.findOne({
+      id: id,
+      _owner: res.locals.user._id
+    });
+    if (!book) {
+      return res.status(404).send();
+    }
+    res.send(book);
+  } catch (e) {
+    res.status(400).send();
+  }
+});
+
+app.patch("/books/:id", express.json(), authenticate, async (req, res) => {
+  const id = req.params.id;
+  const { shelfStatus } = _.pick(req.body, ["shelfStatus"]);
+
+  
+  try {
+    const book = await Book.findOneAndUpdate(
+      { id: id, _owner: res.locals.user[0]._id },
+      { $set: { shelfStatus } }
+    );
+    console.log(book)
+    if (!book) {
+      return res.status(404).send();
+    }
+    res.send(book);
+  } catch (e) {
+    res.status(400).send();
+  }
 });
 
 app.delete("/books/:id", async (req, res) => {
@@ -135,10 +166,6 @@ app.delete("/books/:id", async (req, res) => {
     res.status(400).send();
   }
 });
-
-// app.get("/register/me", authenticate, (req, res) => {
-//   res.send(res.locals.user);
-// });
 
 app.post('/register', async (req, res) => {
 
@@ -184,56 +211,69 @@ app.post('/register', async (req, res) => {
              
      });   
 
-     app.post('/login',(req,res) =>{
-   
-      // console.log(req.body.id)
-
-      //const { email, password } = _.pick(req.body, ["email", "password"]);
-  
-      User.count({id:req.body.email}).exec(function(err,doc){
-          if (err) res.status(500).send(error);
-  
+app.post('/login',async(req,res) =>{
+       //console.log(req.body.userData)
+              User.findOne({email:req.body.userData.email}).exec(function(err,result){
           
-          if(doc>0){
-              User.find({id:req.body.email}).exec(function(err,result){
-          
+                  console.log(result.password)
                      
-                      bcrypt.compare(req.body.password,result[0].password,function(err, callback){
-                        
-                     
-                     
+                      bcrypt.compare(req.body.userData.password,result.password,function(err, callback){
                           if(callback){
-                            const token = User.generateAuthToken();
-                            res.header("x-auth", token).send(result);
+                            const payload = {
+                              username: result.username
+                            };
+                            const token = jwt.sign({ payload }, config.jwt.key).toString('hex');
+                            
+                            User.findOne({email:result.email}).exec(function(err,doc){
+                                doc.tokens[0].token = token;
+                                doc.save();
+                                console.log(doc)
+                                res.header("x-auth", token).send(doc);
+
+                                var LocalStorage = require('node-localstorage').LocalStorage,
+                              localStorage = new LocalStorage('./scratch');
+                            var t= localStorage.setItem("token",token);
+                           // console.log(localStorage.getItem("token"))
+                            })
+                            
+                    //         
   
                               //res.redirect('/home');
                           }
-                          else{
-                              res.redirect('/login');
-                          }
                       })
-                  })
-             
-          }
-  
-              else{
-                  res.redirect('/login');
-                  
-              }
-  
-          }
-      )
+                 })
   
   });
   
-  // app.delete("/logout", authenticate, async (req, res) => {
-  //   try {
-  //     await res.locals.user.removeAuthToken(res.locals.token);
-  //     res.status(200).send();
-  //   } catch (e) {
-  //     res.status(400).send();
-  //   }
-  // });
+  app.delete("/logout", authenticate, async (req, res) => {
+    console.log(res.locals.user[0])
+    
+    User.findOne({email:res.locals.user[0].email}).exec(function(err,doc){
+      User.update({$pull :{"doc.tokens[0].token" :res.locals.token}}).exec(function(e,result){
+        if(e){
+          res.status(400).send();
+        }
+        console.log(result)
+        res.status(200).send();
+      })
+      
+    });
+  
+  });
+
+  app.get("/:id",authenticate, async (req, res) =>{
+
+    const { id } = req.params;
+    console.log(id)
+    User.findOne({_id:id}).exec(function(err,result){
+      if(err){
+        res.status(400).send();
+      }
+      console.log(result)
+      res.status(200).send(result);
+    })
+
+  });
 
   app.get("*",(req, res) => {
     res.sendFile(express.static(path.join(__dirname,"../index.html")));

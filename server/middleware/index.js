@@ -19,7 +19,7 @@ const authenticate = async (req, res, next) => {
     
     res.locals.user = user;
     res.locals.token = token;
-    console.log(res.locals.user[0])
+
     next();
   } catch (e) {
     res.status(401).send();

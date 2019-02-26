@@ -5,10 +5,14 @@ export function addUser (userData){
     return axios.post("http://localhost:3000/register", {userData});
   };
 
-  export const loginUser = (userData) => {
+  export function loginUser (userData) {
     return axios.post("http://localhost:3000/login", {userData});
   };  
 
   export const callLogout = token => {
-    return axios.delete("/logout", { headers: { "x-auth": token } });
+    return axios.delete("http://localhost:3000/logout", { headers: { "x-auth": token } });
   };
+
+  export const getMe = id =>{
+    return axios.get(`http://localhost:3000/${id}`);
+  }

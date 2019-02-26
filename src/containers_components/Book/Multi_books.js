@@ -22,7 +22,7 @@ class Multi_Books extends React.Component {
     dropBooks(){
         const { books, loading, forSearch } = this.props;
         if (books.length) {
-            console.log(books.length)
+      
         return this.divideBooks(books).map(book => (
         <Book key={book.volumeID} book={book} forSearch={forSearch} />
               ));
@@ -49,22 +49,11 @@ class Multi_Books extends React.Component {
       };
 
       render() {
-        const { shelf, stacked, forSearch,books } = this.props;
+         
+        const {  stacked, forSearch,books } = this.props;
         return (
           <div className={forSearch?"books_stacked":"books_not_stacked"}>
-            {this.state.page && (
-                <div className={stacked ? "books_layout_stacked" : "books_layout"}>
-                    {shelf && 
-                    (stacked ? (
-                        <Link
-                          to={`/${shelf.replace(/\s+/g, "-").toLowerCase()}`}
-                          className="books__heading"
-                        >
-                          {shelf}
-                        </Link>
-                      ) : (
-                        <span className="books__heading">{shelf}</span>
-                      ))}
+            {this.state.page && (    
                 <div>
                 {stacked && <div className="books_wrap">{this.dropBooks()}</div>}
                 {!stacked && this.dropBooks()}
@@ -81,7 +70,7 @@ class Multi_Books extends React.Component {
             }
                                   
                                   </div>  
-                </div>
+                
             )}
            
             

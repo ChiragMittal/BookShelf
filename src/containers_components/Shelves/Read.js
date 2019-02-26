@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Multi_Books from '../Book/Multi_books'
 import { beginGetBooks } from "../../actions/index";
 
-class CurrentlyReading extends React.Component {
+class Read extends React.Component {
   constructor(props) {
       super(props);
       this.state = { 
@@ -45,7 +45,7 @@ class CurrentlyReading extends React.Component {
               }
               ).filter(
                 book =>
-                  book.shelfStatus == "Currently Reading"
+                  book.shelfStatus == "Read"
               );
 
               data.length? this.setState({
@@ -55,8 +55,6 @@ class CurrentlyReading extends React.Component {
                           
                             error: "🙅 No matches! 🙅"
                           });
-
-              console.log(this.state.data)
     }
     }
 
@@ -79,4 +77,4 @@ const mapDispatchToProps = dispatch => ({
   beginGetBooks: () => dispatch(beginGetBooks())
 });
 
-export default connect(undefined,mapDispatchToProps)(CurrentlyReading);
+export default connect(undefined,mapDispatchToProps)(Read);

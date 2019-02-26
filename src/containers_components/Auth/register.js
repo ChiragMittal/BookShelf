@@ -37,7 +37,7 @@ class Register extends Component {
     this.setState({ [e.target.id]: e.target.value });
   };
 
-  onSubmit = e => {
+  onSubmit =async e => {
     e.preventDefault();
 
     const newUser = {
@@ -46,7 +46,7 @@ class Register extends Component {
       password: this.state.password,
       password2: this.state.password2
     };
-    const response =  addUser(newUser);
+    const response = await addUser(newUser);
     this.props.beginRegister(response.data);
     this.props.history.push("/search");
   };
@@ -150,7 +150,7 @@ class Register extends Component {
 }
 
 Register.propTypes = {
-  registerUser: PropTypes.func.isRequired,
+  beginRegister: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };

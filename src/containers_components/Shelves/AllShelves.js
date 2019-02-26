@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Multi_Books from '../Book/Multi_books'
 import { beginGetBooks } from "../../actions/index";
 
-class CurrentlyReading extends React.Component {
+class AllShelves extends React.Component {
   constructor(props) {
       super(props);
       this.state = { 
@@ -61,11 +61,10 @@ class CurrentlyReading extends React.Component {
     }
 
 render() {
-
-  
+ 
   return (
     <section className="search">
-      <Multi_Books  books={this.state.data} error={this.state.error} perPage={10}  />
+      <Multi_Books  books={this.state.data} error={this.state.error} perPage={10} stacked />
       {/* {JSON.stringify(this.state.data)} */}
       
     </section>
@@ -79,4 +78,4 @@ const mapDispatchToProps = dispatch => ({
   beginGetBooks: () => dispatch(beginGetBooks())
 });
 
-export default connect(undefined,mapDispatchToProps)(CurrentlyReading);
+export default connect(undefined,mapDispatchToProps)(AllShelves);

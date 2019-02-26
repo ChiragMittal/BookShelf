@@ -4,6 +4,7 @@ import SearchInput from "./input";
 
 import { callGoogleBooks } from "../../APIs/book";
 import Multi_Books from "../Book/Multi_books";
+import Logout from "../Auth/logout";
 
 class BookSearch extends React.Component {
     constructor(props) {
@@ -121,6 +122,7 @@ class BookSearch extends React.Component {
         />
         <Multi_Books books={this.state.data} loading={this.state.loading} error={this.state.error} perPage={10} stacked forSearch />
         {/* {JSON.stringify(this.state.data)} */}
+        <Logout />
       </section>
       
     );

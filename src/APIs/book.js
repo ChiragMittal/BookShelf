@@ -13,11 +13,22 @@ export function postToBooks(book) {
 };
 
 export function getFromBooks() {
-  
-  return axios.get("/books");
+  const token = localStorage.getItem("token");
+  return axios.get("http://localhost:3000/books", { headers: { "x-auth": token } });
 };
 
 export function deleteFromBooks ({ id }) {
 
   return axios.delete(`http://localhost:3000/books/${id}`);
+};
+
+export const editToBooks = ({ id, shelfStatus }) => {
+  const token = localStorage.getItem("token");
+  return axios.patch(
+    `http://localhost:3000/books/${id}`,
+    { shelfStatus },
+    {
+      headers: { "x-auth": token }
+    }
+  );
 };

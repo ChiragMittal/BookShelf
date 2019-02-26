@@ -4,7 +4,9 @@ import React from "react";
 import { Glyphicon, Row,Col,Grid} from 'react-bootstrap';
 import { connect } from "react-redux";
 import { Modal, Button, OverlayTrigger } from 'react-bootstrap';
-import {beginDeleteBook,beginAddBook} from "../../actions/index";
+import {beginDeleteBook,beginAddBook,beginEditBook} from "../../actions/index";
+import { Link } from "react-router-dom";
+
 
 class Book extends React.Component{
     constructor(props){
@@ -21,7 +23,7 @@ class Book extends React.Component{
         this.setState({ showModal: true });
       };
       handleCloseModal () {
-        
+
         this.setState({ showModal: false });
       };
 
@@ -47,9 +49,14 @@ class Book extends React.Component{
       };
 
       async editBook () {
+      
         const book = { ...this.props.book, shelfStatus: this.state.shelf};
+        const status = this.props.book.shelfStatus.replace(/\s+/g, "-").toLowerCase();
         try {
-            await console.log(JSON.stringify(book))
+          
+          await this.props.beginEditBook(book);
+          this.handleCloseModal();
+         window.location.reload();
         } catch (e) {
             console.log(e);
         }
@@ -59,6 +66,7 @@ class Book extends React.Component{
         const shelf = e.target.value;
         console.log(shelf)
         this.props.book.shelfStatus ? this.setState({ shelf }, () => this.editBook()): this.setState({ shelf });
+        
       };
 
       render(){
@@ -114,7 +122,7 @@ class Book extends React.Component{
                                     {description.length > 200? description.slice(0, 200) + " ...": description}
                             </p>
                             <select className="modal_book_select" value={this.state.shelf} onChange={this.onShelfChange.bind(this)}>
-                                <option value="Read">Read</option>
+                                <option value="Read">Read</option> 
                                 <option value="Want to Read">Want to Read</option>
                                 <option value="Currently Reading">Currently Reading</option>
                             </select> 
@@ -146,7 +154,8 @@ class Book extends React.Component{
 
 const mapDispatchToProps = dispatch => ({
     beginAddBook: book => dispatch(beginAddBook(book)),
-    beginDeleteBook: book => dispatch(beginDeleteBook(book))
+    beginDeleteBook: book => dispatch(beginDeleteBook(book)),
+    beginEditBook: book => dispatch(beginEditBook(book))
   });
 
   export default connect(undefined, mapDispatchToProps)(Book);

@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { loginUser } from "../../actions/authActions";
+import { beginLogin } from "../../actions/index";
 import classnames from "classnames";
+import { beginGetBooks } from "../../actions/index";
+import {loginUser} from "../../APIs/auth"
 
 class Login extends Component {
   constructor() {
@@ -19,15 +21,26 @@ class Login extends Component {
     this.setState({ [e.target.id]: e.target.value });
   };
 
-  onSubmit = e => {
+  onSubmit =async e => {
     e.preventDefault();
-
-    const userData = {
-      email: this.state.email,
-      password: this.state.password
-    };
-
-    this.props.loginUser(userData);
+    try{
+        const userData = {
+            email: this.state.email,
+            password: this.state.password
+          };
+          
+          const response = await loginUser(userData);
+          
+          this.props.beginLogin(response.data);
+          this.props.beginGetBooks();
+          this.props.history.push("/search");
+          //console.log(this.props.beginGetBooks())
+          
+    }catch (e) {
+        this.setState({
+          error: "Cannot login. Please recheck your credentials."
+        });
+    }
   };
 
   render() {
@@ -49,7 +62,7 @@ class Login extends Component {
                 Don't have an account? <Link to="/register">Register</Link>
               </p>
             </div>
-            <form noValidate onSubmit={this.onSubmit}>
+            <form noValidate onSubmit={this.onSubmit.bind(this)}>
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
@@ -106,7 +119,7 @@ class Login extends Component {
   }
 }
 Login.propTypes = {
-  loginUser: PropTypes.func.isRequired,
+    beginLogin: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -114,7 +127,9 @@ const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors
 });
-export default connect(
-  mapStateToProps,
-  { loginUser }
-)(Login);
+
+const mapDispatchToProps = dispatch => ({
+    beginLogin: userData => dispatch(beginLogin(userData)),
+    beginGetBooks: () => dispatch(beginGetBooks())
+  });
+export default connect(mapStateToProps,mapDispatchToProps)(Login);

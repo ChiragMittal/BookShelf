@@ -38,19 +38,6 @@ const UserSchema = new mongoose.Schema({
       }
   });
 
-  
-      
-    //   User.removeAuthToken = function(token) {
-    //     const user = this;
-    //     return user.update({
-    //       $pull: {
-    //         tokens: { token }
-    //       }
-    //     });
-    //   };
-
- 
-
 const User = mongoose.model("User", UserSchema);
 
 module.exports = { User };
@@ -67,5 +54,14 @@ User.createUser = function(newUser, callback){
         });
     
 };
+
+   User.removeAuthToken = function(token) {
+        const user = this;
+        return user.update({
+          $pull: {
+            "tokens[0].token": { token }
+          }
+        });
+      };
 
   
