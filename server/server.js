@@ -108,7 +108,7 @@ app.post("/search", express.json(), async (req, res) => {
     
     Book.find({_owner: res.locals.user[0]._id}).exec(function(err,result){
         if (err) res.status(500).send(error)
-      console.log(result)
+      
         res.send(result);
     })
 
@@ -226,8 +226,15 @@ app.post('/login',async(req,res) =>{
                             const token = jwt.sign({ payload }, config.jwt.key).toString('hex');
                             
                             User.findOne({email:result.email}).exec(function(err,doc){
-                                doc.tokens[0].token = token;
-                                doc.save();
+                                //  doc.tokens.token = token;
+                                //  doc.tokens.access = "auth"
+                                doc.tokens = doc.tokens.concat([{
+                                    token : token,
+                                    access : "auth"
+                                }]);
+                                doc.save().then(() => {
+                                   token;
+                                });
                                 console.log(doc)
                                 res.header("x-auth", token).send(doc);
 
@@ -251,7 +258,7 @@ app.post('/login',async(req,res) =>{
     
     User.findOne({email:res.locals.user[0].email}).exec(function(err,doc){
       
-      User.update({$pull :{"doc.tokens[0].token" :res.locals.token}}).exec(function(e,result){
+      User.update({$pull :{tokens :doc.tokens[0]}}).exec(function(e,result){
         if(e){
           res.status(400).send();
         }
@@ -279,12 +286,12 @@ app.post('/login',async(req,res) =>{
 
   app.get("/",authenticate, async (req, res) =>{
     const data = res.locals.user[0];
-    console.log(data);
+  
     User.findOne({_id:data}).exec(function(err,result){
       if(err){
         res.status(400).send();
       }
-      console.log(result)
+      
       res.status(200).send(result);
     })
 
