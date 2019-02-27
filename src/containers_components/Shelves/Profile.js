@@ -4,7 +4,13 @@ import { connect } from "react-redux";
 import {beginGetProfile,beginGetBooks} from '../../actions/index'
 import { withRouter } from 'react-router'
 import Multi_Books from '../Book/Multi_books'
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Grid, Row, Col } from 'react-bootstrap'
+import Common from "../Common/common"
+import NavBarCommon from "../Common/navcommon"
+import { ButtonToolbar, Dropdown, DropdownButton } from "react-bootstrap";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch, faUser } from '@fortawesome/free-solid-svg-icons'
+
 
 
 class UserInfo extends React.Component {
@@ -178,13 +184,22 @@ class UserInfo extends React.Component {
 
     return (
     <div>
+        <NavBarCommon />
+        <Common />
         <Grid>
             <Row>
                 <Col md={3} className="profile">
                             <h1>{this.state.user.username}</h1>
                         <h2>{this.state.user.email}</h2>
+
+                        
+                        
+        
+        
+     
+                        
                 </Col>
-                <Col md={7} mdOffset={7} className="profile_books">
+                <Col md={6} mdOffset={6} className="profile_books">
                     <div>
                       <h3><a href="/currently-reading">Currently Reading</a></h3>
                       <Multi_Books books={this.state.data1} error={this.state.error} perPage={7} stacked />   

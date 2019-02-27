@@ -66,12 +66,16 @@ class Multi_Books extends React.Component {
                   onChange={this.handlePageChange.bind(this)}
                 />}
                 </div>  :
-                <div></div>
+                <div >
+                {/* <p>No books on the shelf 😔</p>
+                <Link to="/search">Find Book</Link> */}
+                </div>
             }
                                   
                                   </div>  
                 
             )}
+
            
             
           </div>

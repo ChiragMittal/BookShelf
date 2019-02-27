@@ -161,6 +161,7 @@ app.delete("/books/:id", async (req, res) => {
     if (!book) {
       return res.status(404).send();
     }
+    console.log(book)
     res.send(book);
   } catch (e) {
     res.status(400).send();
@@ -246,9 +247,10 @@ app.post('/login',async(req,res) =>{
   });
   
   app.delete("/logout", authenticate, async (req, res) => {
-    console.log(res.locals.user[0])
+
     
     User.findOne({email:res.locals.user[0].email}).exec(function(err,doc){
+      
       User.update({$pull :{"doc.tokens[0].token" :res.locals.token}}).exec(function(e,result){
         if(e){
           res.status(400).send();
@@ -274,6 +276,19 @@ app.post('/login',async(req,res) =>{
     })
 
   });
+
+  app.get("/",authenticate, async (req, res) =>{
+    const data = res.locals.user[0];
+    console.log(data);
+    User.findOne({_id:data}).exec(function(err,result){
+      if(err){
+        res.status(400).send();
+      }
+      console.log(result)
+      res.status(200).send(result);
+    })
+
+  })
 
   app.get("*",(req, res) => {
     res.sendFile(express.static(path.join(__dirname,"../index.html")));

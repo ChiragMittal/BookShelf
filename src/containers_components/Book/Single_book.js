@@ -41,8 +41,12 @@ class Book extends React.Component{
       };
 
       async deleteBook () {
+     
         try {
+          
           await this.props.beginDeleteBook(this.props.book);
+          this.handleCloseModal();
+         window.location.reload();
         } catch (e) {
             console.log(e);
         }
@@ -51,7 +55,7 @@ class Book extends React.Component{
       async editBook () {
       
         const book = { ...this.props.book, shelfStatus: this.state.shelf};
-        const status = this.props.book.shelfStatus.replace(/\s+/g, "-").toLowerCase();
+        
         try {
           
           await this.props.beginEditBook(book);

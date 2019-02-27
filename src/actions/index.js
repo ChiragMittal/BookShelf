@@ -1,6 +1,6 @@
 import axios from 'axios'
 import * as ACTION from '../constants'
-import { postToBooks ,deleteFromBook ,getFromBooks ,editToBooks} from "../APIs/book";
+import { postToBooks ,deleteFromBooks ,getFromBooks ,editToBooks} from "../APIs/book";
 import {addUser , loginUser,getMe} from "../APIs/auth"
 
 export const getProfile = (id) => {
@@ -57,7 +57,7 @@ export const addBook = (data) => {
 
 export function beginDeleteBook (book) {
     return dispatch => {
-      return deleteFromBook(book).then(({ data }) =>
+      return deleteFromBooks(book).then(({ data }) =>
         dispatch(deleteBook(data))
       );
     };
@@ -94,7 +94,7 @@ export const beginGetBooks = () => {
     };
   };
   
-  const getBooks = books => ({
+  export const getBooks = books => ({
     type: ACTION.SET_BOOKS,
     books
   });

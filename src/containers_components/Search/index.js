@@ -1,10 +1,11 @@
 import React from "react";
 import SearchInput from "./input";
-//import BooksContainer from "../Books/BooksContainer";
 
 import { callGoogleBooks } from "../../APIs/book";
 import Multi_Books from "../Book/Multi_books";
-import Logout from "../Auth/logout";
+import Common from "../Common/common"
+import NavBarCommon from "../Common/navcommon"
+
 
 class BookSearch extends React.Component {
     constructor(props) {
@@ -113,16 +114,21 @@ class BookSearch extends React.Component {
   render() {
     return (
       <section className="search">
-        <SearchInput
-          query={this.state.query}
-          field={this.state.field}
-          onQueryChange={this.onQueryChange.bind(this)}
-          onFieldChange={this.onFieldChange.bind(this)}
-          submitForm={this.submitForm.bind(this)}
-        />
-        <Multi_Books books={this.state.data} loading={this.state.loading} error={this.state.error} perPage={10} stacked forSearch />
-        {/* {JSON.stringify(this.state.data)} */}
-        <Logout />
+      <NavBarCommon />
+        <Common />
+        <div className="search_form">
+            <SearchInput
+              query={this.state.query}
+              field={this.state.field}
+              onQueryChange={this.onQueryChange.bind(this)}
+              onFieldChange={this.onFieldChange.bind(this)}
+              submitForm={this.submitForm.bind(this)}
+            />
+            <Multi_Books books={this.state.data} loading={this.state.loading} error={this.state.error} perPage={10} stacked forSearch />
+            {/* {JSON.stringify(this.state.data)} */}
+        </div>
+        
+        
       </section>
       
     );

@@ -16,3 +16,7 @@ export function addUser (userData){
   export const getMe = id =>{
     return axios.get(`http://localhost:3000/${id}`);
   }
+
+  export const getInfo=()=>{
+    return axios.get("http://localhost:3000/");
+  }
