@@ -1,4 +1,5 @@
 import React from "react";
+import {Form} from "react-bootstrap"
 
 const SearchInput = ({
   query,
@@ -16,12 +17,13 @@ const SearchInput = ({
       value={query}
       autoFocus
     />
-    <select className="search__select" value={field} onChange={onFieldChange}>
+    <select className="search_select" value={field} onChange={onFieldChange}>
       <option value="intitle">Title</option>
       <option value="inauthor">Author</option>
       <option value="isbn">ISBN</option>
     </select>
   </form>
+
 );
 
 export default SearchInput;
