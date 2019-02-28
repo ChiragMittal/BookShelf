@@ -21,6 +21,7 @@ class Multi_Books extends React.Component {
     };
     dropBooks(){
         const { books, loading, forSearch } = this.props;
+        // console.log(books)
         if (books.length) {
       
         return this.divideBooks(books).map(book => (

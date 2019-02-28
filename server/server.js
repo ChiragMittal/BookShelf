@@ -75,7 +75,7 @@ app.post("/search", express.json(), async (req, res) => {
           description: req.body.description,
           pageCount: req.body.pageCount,
           thumbnailLink: req.body.thumbnailLink,
-          shelfStatus: req.body.shelfStatus,
+           shelfStatus: req.body.shelfStatus,
           favourite : req.body.favourite,
           _owner: res.locals.user[0]._id
         });

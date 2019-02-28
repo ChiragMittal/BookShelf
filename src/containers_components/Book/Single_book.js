@@ -19,6 +19,8 @@ class Book extends React.Component{
             shelf: this.props.book.shelfStatus ? this.props.book.shelfStatus : "Want to Read",
             favourites : this.props.book.favourite ? this.props.book.favourite : false
           };
+          console.log(this.state.favourites)
+          console.log(this.props.book.favourite)
     }
 
     handleOpenModal(e) {
@@ -33,7 +35,7 @@ class Book extends React.Component{
       async addBook (){
        
         const book = Object.assign({}, this.props.book, {
-          shelfStatus: this.state.shelf,
+           shelfStatus: this.state.shelf,
           favourite : this.state.favourites
         });
         try {
@@ -83,7 +85,7 @@ class Book extends React.Component{
       this.setState({
         favourites : true
       });
-   
+      //console.log(this.state.favourites)
       const book = { ...this.props.book, 
         favourite: this.state.favourites
       };
@@ -96,13 +98,14 @@ class Book extends React.Component{
         console.log(e);
       }
       }
+  
 
       async deleteFavourites(){
-  
+        
         this.setState({
           favourites : false
         });
-     
+        
         const book = { ...this.props.book, 
           favourite: this.state.favourites
         };
@@ -179,7 +182,7 @@ class Book extends React.Component{
             </Modal.Body> 
                         <Modal.Footer>
                         {(favourites) ? (<a onClick={this.deleteFavourites.bind(this)}><img src="https://img.icons8.com/ios/20/000000/hearts-filled.png" className="save"/></a>):
-       (<a onClick={this.addFavourites.bind(this)}><img src="https://img.icons8.com/ios/20/000000/hearts.png" className="save"/></a>)}
+                            (<a onClick={this.addFavourites.bind(this)}><img src="https://img.icons8.com/ios/20/000000/hearts.png" className="save"/></a>)}
                         {forSearch ? (
                             <a className="modal_book_submit" onClick={this.addBook.bind(this)}>
                                 <i className="done"  ><Glyphicon glyph="ok" /></i>
