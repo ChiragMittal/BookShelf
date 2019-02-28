@@ -22,11 +22,11 @@ export function deleteFromBooks ({ id }) {
   return axios.delete(`http://localhost:3000/books/${id}`);
 };
 
-export const editToBooks = ({ id, shelfStatus }) => {
+export const editToBooks = ({ id, shelfStatus ,favourite }) => {
   const token = localStorage.getItem("token");
   return axios.patch(
     `http://localhost:3000/books/${id}`,
-    { shelfStatus },
+    { shelfStatus ,favourite},
     {
       headers: { "x-auth": token }
     }

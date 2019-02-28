@@ -32,7 +32,7 @@ class Read extends React.Component {
                 const pageCount = book.pageCount || null;
                 const shelfStatus = book.shelfStatus || "";
                 const thumbnailLink = book.thumbnailLink ||"";
-    
+                const favourite = book.favourite ;
                 return {
                   id,
                   identifiers,
@@ -42,7 +42,8 @@ class Read extends React.Component {
                   description,
                   pageCount,
                   thumbnailLink,
-                  shelfStatus
+                  shelfStatus,
+                  favourite
                 };
               }
               ).filter(
@@ -57,6 +58,7 @@ class Read extends React.Component {
                           
                             error: "🙅 No matches! 🙅"
                           });
+                          console.log(this.state.data)
     }
     }
 

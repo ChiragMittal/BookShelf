@@ -6,6 +6,8 @@ import { connect } from "react-redux";
 import { Modal, Button, OverlayTrigger } from 'react-bootstrap';
 import {beginDeleteBook,beginAddBook,beginEditBook} from "../../actions/index";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBookmark, faUser ,faAddressCard } from '@fortawesome/free-solid-svg-icons'
 
 
 class Book extends React.Component{
@@ -14,7 +16,8 @@ class Book extends React.Component{
        // self = this;
         this.state = {
             showModal: false,
-            shelf: this.props.book.shelfStatus ? this.props.book.shelfStatus : "Want to Read"
+            shelf: this.props.book.shelfStatus ? this.props.book.shelfStatus : "Want to Read",
+            favourites : this.props.book.favourite ? this.props.book.favourite : false
           };
     }
 
@@ -30,11 +33,13 @@ class Book extends React.Component{
       async addBook (){
        
         const book = Object.assign({}, this.props.book, {
-          shelfStatus: this.state.shelf
+          shelfStatus: this.state.shelf,
+          favourite : this.state.favourites
         });
         try {
             await this.props.beginAddBook(book);
           this.handleCloseModal();
+          console.log(book)
         } catch (e) {
           console.log(e);
         }
@@ -73,6 +78,44 @@ class Book extends React.Component{
         
       };
 
+     async addFavourites(){
+      
+      this.setState({
+        favourites : true
+      });
+   
+      const book = { ...this.props.book, 
+        favourite: this.state.favourites
+      };
+
+      try {
+        await this.props.beginEditBook(book);
+        // this.handleCloseModal();
+        console.log(book)
+      } catch (e) {
+        console.log(e);
+      }
+      }
+
+      async deleteFavourites(){
+  
+        this.setState({
+          favourites : false
+        });
+     
+        const book = { ...this.props.book, 
+          favourite: this.state.favourites
+        };
+  
+        try {
+          await this.props.beginEditBook(book);
+          //this.handleCloseModal();
+          console.log(book)
+        } catch (e) {
+          console.log(e);
+        }
+        }
+
       render(){
         const { forSearch } = this.props;
         const {
@@ -82,8 +125,10 @@ class Book extends React.Component{
           subtitle,
           authors,
           pageCount,
-          description
+          description,
+          favourite
         } = this.props.book;
+        const {favourites} = this.state;
         return (
         <div className="books">
      
@@ -133,6 +178,8 @@ class Book extends React.Component{
                             </div>
             </Modal.Body> 
                         <Modal.Footer>
+                        {(favourites) ? (<a onClick={this.deleteFavourites.bind(this)}><img src="https://img.icons8.com/ios/20/000000/hearts-filled.png" className="save"/></a>):
+       (<a onClick={this.addFavourites.bind(this)}><img src="https://img.icons8.com/ios/20/000000/hearts.png" className="save"/></a>)}
                         {forSearch ? (
                             <a className="modal_book_submit" onClick={this.addBook.bind(this)}>
                                 <i className="done"  ><Glyphicon glyph="ok" /></i>

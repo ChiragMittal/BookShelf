@@ -76,9 +76,10 @@ app.post("/search", express.json(), async (req, res) => {
           pageCount: req.body.pageCount,
           thumbnailLink: req.body.thumbnailLink,
           shelfStatus: req.body.shelfStatus,
+          favourite : req.body.favourite,
           _owner: res.locals.user[0]._id
         });
-        console.log(book.id)
+        console.log(book)
 
         book.save((err, doc) => {
             if (!err)
@@ -102,10 +103,9 @@ app.post("/search", express.json(), async (req, res) => {
   })
   });
 
+  
   app.get("/books", authenticate ,async (req,res) =>{
 
-    
-    
     Book.find({_owner: res.locals.user[0]._id}).exec(function(err,result){
         if (err) res.status(500).send(error)
       
@@ -135,14 +135,14 @@ app.get("/books/:id", authenticate, async (req, res) => {
 app.patch("/books/:id", express.json(), authenticate, async (req, res) => {
   const id = req.params.id;
   const { shelfStatus } = _.pick(req.body, ["shelfStatus"]);
-
-  
+  const { favourite } = _.pick(req.body ,["favourite"] );
+  console.log(req.body)
   try {
     const book = await Book.findOneAndUpdate(
       { id: id, _owner: res.locals.user[0]._id },
-      { $set: { shelfStatus } }
+      { $set: { shelfStatus ,favourite} }
     );
-    console.log(book)
+    //console.log(book)
     if (!book) {
       return res.status(404).send();
     }
@@ -215,9 +215,7 @@ app.post('/register', async (req, res) => {
 app.post('/login',async(req,res) =>{
        //console.log(req.body.userData)
               User.findOne({email:req.body.userData.email}).exec(function(err,result){
-          
-                  console.log(result.password)
-                     
+                   
                       bcrypt.compare(req.body.userData.password,result.password,function(err, callback){
                           if(callback){
                             const payload = {
@@ -262,8 +260,11 @@ app.post('/login',async(req,res) =>{
         if(e){
           res.status(400).send();
         }
-        console.log(result)
+        
+        
         res.status(200).send();
+        
+
       })
       
     });

@@ -78,12 +78,13 @@ i {
 .books_not_wrap {
   display: grid;
   align-items: center;
-  justify-items: center;
+  justify-items: right;
   grid-template-columns: repeat(4, minmax(min-content, 1fr)); }
 
 .book_cover {
-  position: relative;
-  z-index: -10; }
+  position: relative; }
+  .book_cover:after {
+    z-index: -1; }
   .book_cover:hover {
     transform: translateY(-0.5rem) scale(1.2);
     box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.4);
@@ -102,7 +103,7 @@ i {
 
 .no-books {
   margin-top: 130px !important;
-  grid-column: 1/-1;
+  grid-column: 1/span 2;
   text-align: center; }
 
 .modal-backdrop {
@@ -213,7 +214,8 @@ input {
   background-clip: padding-box;
   border: 1px solid #ced4da;
   border-radius: .75rem;
-  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; }
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  margin-bottom: 20px; }
 
 .books_stacked {
   text-align: center;
@@ -226,3 +228,9 @@ input {
 .title {
   color: #22b8cf;
   text-align: center; }
+
+label {
+  margin-left: 10px; }
+
+.save {
+  float: left; }

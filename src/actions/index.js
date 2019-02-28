@@ -72,12 +72,13 @@ export const deleteBook = (id) => {
     })
 }
 
-export const editBook = (id,shelfStatus) => {
+export const editBook = (id,shelfStatus,favourite) => {
     return ({
         type: ACTION.EDIT_BOOK,
        
             id,
-            shelfStatus
+            shelfStatus,
+            favourite
         
     })
 };
@@ -98,6 +99,15 @@ export const beginGetBooks = () => {
     type: ACTION.SET_BOOKS,
     books
   });
+
+  export const addToFavourites = (data) => {
+    return ({
+        type: ACTION.ADD_TO_FAVOURITES,
+        
+            data: data
+        
+    })
+}
 
 
 

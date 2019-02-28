@@ -33,6 +33,10 @@ const BookSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  favourite :{
+    type: Boolean,
+    required:true
+  },
   shelfStatus: {
     type: String,
     enum: ["Read", "Currently Reading", "Want to Read"],
