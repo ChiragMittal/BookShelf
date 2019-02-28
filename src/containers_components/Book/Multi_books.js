@@ -56,10 +56,10 @@ class Multi_Books extends React.Component {
             {this.state.page && (    
                 <div>
                 {stacked && <div className="books_wrap">{this.dropBooks()}</div>}
-                {!stacked && this.dropBooks()}
+                {!stacked && <div className="books_not_wrap">{this.dropBooks()}</div>}
                 {this.divideBooks(books).length ? 
-                <div>
-                { <Pagination
+                <div className="paginations">
+                { <Pagination 
                   activePage={this.state.page}
                   itemsCountPerPage={this.props.perPage}
                   totalItemsCount={this.props.books.length}

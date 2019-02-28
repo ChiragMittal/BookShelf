@@ -1,7 +1,9 @@
 import React from "react";
-import { connect } from "react-redux";
+import { connect } from "react-redux"
 import Multi_Books from '../Book/Multi_books'
-import { beginGetBooks } from "../../actions/index";
+import { beginGetBooks } from "../../actions/index"
+import Common from "../Common/common"
+import NavBarCommon from "../Common/navcommon"
 
 class CurrentlyReading extends React.Component {
   constructor(props) {
@@ -65,6 +67,9 @@ render() {
   
   return (
     <section className="search">
+    <NavBarCommon />
+        <Common />
+        <h1 className="title">Currently Reading</h1>
       <Multi_Books  books={this.state.data} error={this.state.error} perPage={10}  />
       {/* {JSON.stringify(this.state.data)} */}
       

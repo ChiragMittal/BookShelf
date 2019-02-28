@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faUser ,faAddressCard } from '@fortawesome/free-solid-svg-icons'
 import {beginGetProfile} from '../../actions/index'
 import { withRouter } from 'react-router'
 import { connect } from "react-redux"
@@ -41,7 +41,7 @@ class Common extends React.Component {
             <div>
                 <div className="icon-bar">
                     <Link to="/search"><FontAwesomeIcon icon={faSearch} /></Link>
-                    <Link to={`/${user}`}><FontAwesomeIcon icon={faUser} /></Link>
+                    <Link to={`/${user}`}><FontAwesomeIcon icon={faAddressCard} /></Link>
                     <DropdownButton
           drop="right"
           variant="secondary"
