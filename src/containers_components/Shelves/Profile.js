@@ -187,6 +187,7 @@ class UserInfo extends React.Component {
     <div>
         <NavBarCommon />
         <Common />
+        <h1 className="title"> Profile</h1>
         <Grid>
             <Row>
                 <Col md={3} className="profile">

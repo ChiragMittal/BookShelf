@@ -10,6 +10,7 @@ import Login from './containers_components/Auth/login'
 import Read from './containers_components/Shelves/Read'
 import WantToRead from './containers_components/Shelves/Want_To_Read'
 import UserInfo from './containers_components/Shelves/Profile'
+import Favourites from './containers_components/Shelves/Favourites'
 
 
 class AppsRoutes extends Component {
@@ -31,6 +32,7 @@ class AppsRoutes extends Component {
         <Route path="/read"  render={(props) => (<Read {...appProps} />)} />
         <Route path="/want-to-read"  render={(props) => (<WantToRead {...appProps} />)} />
         <Route path="/currently-reading"  render={(props) => (<CurrentlyReading {...appProps} />)} />
+        <Route path="/favourites"  render={(props) => (<Favourites {...appProps} />)} />
         <Route path="/:id"  render={(props) => (<UserInfo {...appProps} />)} />
         {/* <Route exact path="/destination/search" render={(props) => (<FluxCartApp {...appProps} />)} /> */}
         {/* Accessing auth directly will bring to login page */}
