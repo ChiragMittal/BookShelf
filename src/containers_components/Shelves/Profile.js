@@ -95,7 +95,7 @@ class UserInfo extends React.Component {
                   const pageCount = book.pageCount || null;
                   const shelfStatus = book.shelfStatus || "";
                   const thumbnailLink = book.thumbnailLink ||"";
-      
+                  const favourite = book.favourite ;
                   return {
                     id,
                     identifiers,
@@ -105,7 +105,8 @@ class UserInfo extends React.Component {
                     description,
                     pageCount,
                     thumbnailLink,
-                    shelfStatus
+                    shelfStatus,
+                    favourite
                   };
                 }
                 ).filter(
@@ -140,7 +141,7 @@ class UserInfo extends React.Component {
                   const pageCount = book.pageCount || null;
                   const shelfStatus = book.shelfStatus || "";
                   const thumbnailLink = book.thumbnailLink ||"";
-      
+                  const favourite = book.favourite ;
                   return {
                     id,
                     identifiers,
@@ -150,7 +151,8 @@ class UserInfo extends React.Component {
                     description,
                     pageCount,
                     thumbnailLink,
-                    shelfStatus
+                    shelfStatus,
+                    favourite
                   };
                 }
                 ).filter(
