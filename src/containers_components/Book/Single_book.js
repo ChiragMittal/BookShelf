@@ -1,6 +1,4 @@
 import React from "react";
- //import  Modal  from "react-modal";
-//import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Glyphicon, Row,Col,Grid} from 'react-bootstrap';
 import { connect } from "react-redux";
 import { Modal, Button, OverlayTrigger } from 'react-bootstrap';

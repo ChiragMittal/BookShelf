@@ -239,7 +239,9 @@ app.post('/login',async(req,res) =>{
 
                                 var LocalStorage = require('node-localstorage').LocalStorage,
                               localStorage = new LocalStorage('./scratch');
-                            var t= localStorage.setItem("token",token);
+                             var t= localStorage.setItem("token",token);
+                
+                            //var t = localStorage.concat(token);
                            // console.log(localStorage.getItem("token"))
                             })
                             

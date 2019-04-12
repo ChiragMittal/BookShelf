@@ -33,7 +33,10 @@ class Login extends Component {
           
           this.props.beginLogin(response.data);
           this.props.beginGetBooks();
+          const token = window.localStorage.getItem("token");
+    console.log(token)
           this.props.history.push("/search");
+          
           //console.log(this.props.beginGetBooks())
           
     }catch (e) {

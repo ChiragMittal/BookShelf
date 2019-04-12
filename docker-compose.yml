@@ -1,0 +1,26 @@
+version : '3'
+services:
+  mongo:
+    container_name : mongo_shelf
+    image: mongo
+    ports:
+      - "27017:27017"
+  express-app:    
+    container_name: book_shelf
+    image: express-app
+    build: .
+    command : node server/server.js
+    ports:
+      - "3000:3000"
+    depends_on : [mongo]    
+  react-app:
+    container_name : book_shelf_react
+    image: react-app
+    build: .
+    command : npm run start
+    ports:
+      - "8000:8000"
+    depends_on : [ express-app]  
+  
+    
+

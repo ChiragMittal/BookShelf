@@ -81,5 +81,13 @@ module.exports = {
     alias: {
       jQuery: require.resolve('jquery')
     }
-  }
+  },
+  devServer: {
+    //       historyApiFallback: true,
+    //       hot: true,
+    //       contentBase: path.resolve(__dirname, 'dist'),
+    //       publicPath: '/',
+             host : "0.0.0.0",
+             port: 8080,
+      },
 }

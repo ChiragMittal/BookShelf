@@ -6,7 +6,7 @@ const authenticate = async (req, res, next) => {
     var LocalStorage = require('node-localstorage').LocalStorage,
                        localStorage = new LocalStorage('./scratch');
                      var token= localStorage.getItem("token");
-                    // console.log(localStorage.getItem("token"))
+                    
  //console.log(token);
  decoded = jwt.verify(token, config.jwt.key);
  

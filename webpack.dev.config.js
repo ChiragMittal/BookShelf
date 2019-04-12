@@ -14,7 +14,7 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist'
+    publicPath: '/dist/'
   },
   module: {
     rules: [
@@ -89,6 +89,7 @@ module.exports = {
     historyApiFallback: true,
     compress: true,
     publicPath: '/dist',
+    host : "0.0.0.0",
     port: CONFIG.APP_PORT
     // content base for changing its content base
   }
